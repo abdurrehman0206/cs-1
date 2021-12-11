@@ -34,7 +34,7 @@ int main()
         }
         else
         {
-            cout << "Technical Issues!"<<endl;
+            cout << "Technical Issues!" << endl;
         }
     }
     else
