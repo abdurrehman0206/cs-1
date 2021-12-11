@@ -10,6 +10,7 @@ int main()
     cout << "Enter Age :: ";
     cin >> age;
 
+
     if (age <= 12)
     {
         cout << "Redirecting to Childrens Section.... " << endl;
