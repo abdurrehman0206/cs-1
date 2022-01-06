@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-
+    
     int size, tmpsize;
     cout << "Enter size :: ";
     cin >> size;
