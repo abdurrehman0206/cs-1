@@ -5,22 +5,22 @@ using namespace std;
 int main()
 {
 
-    int size, i, j, cnt, stemp, temp;
-    cout << "Enter Size :: ";
-    cin >> size;
-    stemp = size;
-    temp = stemp;
+    int range, i, j, cnt, rtemp, temp;
+    cout << "Enter range :: ";
+    cin >> range;
+    rtemp = range;
+    temp = rtemp;
 
-    for (i = 1; i <= size * 2; i++)
+    for (i = 1; i <= range * 2; i++)
     {
-        if (i > size)
+        if (i > range)
         {
-            stemp = ++temp;
+            rtemp = ++temp;
             cnt--;
         }
         else
         {
-            stemp = --temp;
+            rtemp = --temp;
             cnt = i;
         }
         for (j = 1; (j <= cnt && j != 0);)

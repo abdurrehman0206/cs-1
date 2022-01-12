@@ -4,15 +4,14 @@ using namespace std;
 
 int main()
 {
-    int i, j, range;
-    int cnt, rtemp, temp; 
+    int i, j, range, cnt, rtemp, temp;
     cout << "Enter Range :: ";
     cin >> range;
     rtemp = range;
     temp = rtemp;
     for (i = 1; i <= range * 2; i++)
     {
-        
+
         if (i > range)
         {
             cnt--;
