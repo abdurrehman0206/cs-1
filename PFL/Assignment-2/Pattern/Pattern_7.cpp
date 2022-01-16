@@ -32,7 +32,6 @@ int main()
             }
             else
             {
-
                 cout << "*";
                 j++;
             }
