@@ -4,21 +4,16 @@ using namespace std;
 
 int main()
 {
-    //Input Below 9
-    int range, i, j, rtemp, end;
+    int range, i, j, end, start;
     cout << "Enter range :: ";
     cin >> range;
-    rtemp = range;
+    start = 1;
+    end = (range * 2);
     for (i = 1; i <= range; i++)
     {
-        end = rtemp--;
-        if (i > end)
+        for (j = 1; j < range * 2; j++)
         {
-            break;
-        }
-        for (j = 1; j <= range; j++)
-        {
-            if (j > i && j < end)
+            if (j > start && j < end - 1)
             {
                 cout << " ";
             }
@@ -27,7 +22,8 @@ int main()
                 cout << "*";
             }
         }
-
+        end--;
+        start++;
         cout << endl;
     }
 

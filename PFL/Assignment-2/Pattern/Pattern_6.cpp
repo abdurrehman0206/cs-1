@@ -4,41 +4,37 @@ using namespace std;
 
 int main()
 {
-    int i, j, range;
-    int cnt, rtemp, temp, jtemp;
-    cout << "Enter Range :: ";
+    int range, i, j, end, start;
+    cout << "Enter range :: ";
     cin >> range;
-    rtemp = range;
-    temp = rtemp;
-    for (i = 1; i <= range * 2; i++)
+    start = range;
+    end = range;
+    for (i = 1; i <= range; i++)
     {
-
-        if (i > range)
+        for (j = 1; j < range * 2; j++)
         {
-            cnt--;
-            rtemp = ++temp;
-        }
-        else
-        {
-            rtemp = --temp;
-            cnt = i;
-        }
-        for (j = 1; j <= cnt;)
-        {
-            if (rtemp > 0)
+            if (i != range)
             {
-                cout << " ";
-                rtemp--;
+                if (j == end || j == start)
+                {
+                    cout << "*";
+                }
+                else
+                {
+                    cout << " ";
+                }
             }
             else
             {
-                cout << "**";
-                j++;
+                cout << "*";
             }
         }
-
+        end++;
+        start--;
         cout << endl;
     }
+
     system("pause");
+
     return 0;
 }
