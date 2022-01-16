@@ -23,7 +23,7 @@ int main()
             rtemp = --temp;
             cnt = i;
         }
-        for (j = 1; (j <= cnt && j != 0);)
+        for (j = 1; j <= cnt;)
         {
             if (rtemp > 0)
             {
@@ -32,7 +32,7 @@ int main()
             }
             else
             {
-                cout << j;
+                cout << "*";
                 j++;
             }
         }

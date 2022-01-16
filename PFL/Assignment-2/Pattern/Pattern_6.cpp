@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     int i, j, range;
-    int cnt, rtemp, temp , jtemp;
+    int cnt, rtemp, temp, jtemp;
     cout << "Enter Range :: ";
     cin >> range;
     rtemp = range;
@@ -23,7 +23,7 @@ int main()
             rtemp = --temp;
             cnt = i;
         }
-        for (j = 1; (j <= cnt && j != 0);)
+        for (j = 1; j <= cnt;)
         {
             if (rtemp > 0)
             {

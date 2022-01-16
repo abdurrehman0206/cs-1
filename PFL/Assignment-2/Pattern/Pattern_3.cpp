@@ -5,14 +5,14 @@ using namespace std;
 int main()
 {
     int i, j, range;
-    int cnt, rtemp, temp; 
+    int cnt, rtemp, temp;
     cout << "Enter Range :: ";
     cin >> range;
     rtemp = range;
     temp = rtemp;
     for (i = 1; i <= range * 2; i++)
     {
-        
+
         if (i > range)
         {
             cnt--;
@@ -22,7 +22,7 @@ int main()
             rtemp = --temp;
             cnt = i;
         }
-        for (j = 1; (j <= cnt && j != 0);)
+        for (j = 1; j <= cnt;)
         {
             if (rtemp > 0)
             {
@@ -31,7 +31,7 @@ int main()
             }
             else
             {
-                cout << j;
+                cout << "*";
                 j++;
             }
         }

@@ -4,38 +4,30 @@ using namespace std;
 
 int main()
 {
-
-    int size, i, j, cnt, stemp, temp;
-    cout << "Enter Size :: ";
-    cin >> size;
-    stemp = size;
-    temp = stemp;
-
-    for (i = 1; i <= size * 2; i++)
+    //Input Below 9
+    int range, i, j, rtemp, end;
+    cout << "Enter range :: ";
+    cin >> range;
+    rtemp = range;
+    for (i = 1; i <= range; i++)
     {
-        if (i > size)
+        end = rtemp--;
+        if (i > end)
         {
-            stemp = ++temp;
-            cnt--;
+            break;
         }
-        else
+        for (j = 1; j <= range; j++)
         {
-            stemp = --temp;
-            cnt = i;
-        }
-        for (j = 1; (j <= cnt && j != 0);)
-        {
-            if (j == 1 || j == cnt)
+            if (j > i && j < end)
             {
-                cout << "* ";
-                j++;
+                cout << " ";
             }
             else
             {
-                cout << "  ";
-                j++;
+                cout << "*";
             }
         }
+
         cout << endl;
     }
 

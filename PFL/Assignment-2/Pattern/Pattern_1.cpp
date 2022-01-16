@@ -5,22 +5,23 @@ using namespace std;
 int main()
 {
     int i, j, range;
-    int cnt; 
+    int cnt;
     cout << "Input Range :: ";
     cin >> range;
-    for (i = 1; i <= range * 2; i++) 
+    for (i = 1; i <= range * 2; i++)
     {
 
-        if (i > range) {
-            cnt--;      
+        if (i > range)
+        {
+            cnt--;
         }
         else
         {
             cnt = i;
         }
-        for(j = 1 ; (j <=cnt && j!=0);)
+        for (j = 1; j <= cnt;)
         {
-            cout << j ;
+            cout << "*";
             j++;
         }
         cout << endl;
