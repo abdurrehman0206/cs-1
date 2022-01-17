@@ -20,15 +20,15 @@ int main()
     cin >> col[1];
     float b[row[1]][col[1]];
     cout << "Second Array Created of size " << row[1] << "x" << col[1] << endl;
-
     system("pause");
     system("CLS");
     do
     {
+        system("CLS");
         cout << "1-->Input Values to Matrices" << endl;
         cout << "2-->Output Values of Matrices" << endl;
-        cout << "2-->Multiply AxB" << endl;
-        cout << "3-->Multiply BxA" << endl;
+        cout << "3-->Multiply AxB" << endl;
+        cout << "4-->Multiply BxA" << endl;
         cout << endl;
 
         cout << "Enter Option :: ";
@@ -73,11 +73,11 @@ int main()
                     {
                         if (i == 0)
                         {
-                            cout << a[r][c] << " ";
+                            cout << a[r][c] << "\t";
                         }
                         else if (i == 1)
                         {
-                            cout << b[r][c] << " ";
+                            cout << b[r][c] << "\t";
                         }
                     }
                     cout << endl;
@@ -88,26 +88,101 @@ int main()
             system("CLS");
             break;
         case 3:
+        {
             if (col[0] == row[1])
             {
+
                 cout << "Multiplication is Possible!" << endl;
+                float res0[row[0]][col[1]];
+                cout << "Created a Result Matrix of size " << row[0] << "x" << col[1] << endl;
+                cout << "Nullifying the Result Matrix......" << endl;
+                for (int i = 0; i < row[0]; i++)
+                {
+                    for (int j = 0; j < col[1]; j++)
+                    {
+                        res0[i][j] = 0;
+                    }
+                }
+                cout << "Nullified Successfully....." << endl;
+
+                for (int i = 0; i < row[0]; i++)
+                {
+                    for (int j = 0; j < col[1]; j++)
+                    {
+                        for (int k = 0; k < col[0]; k++)
+                        {
+                            res0[i][j] = res0[i][j] + (a[i][k] * b[k][j]);
+                        }
+                    }
+                }
+
+                cout << "Product AxB ::" << endl;
+
+                for (int i = 0; i < row[0]; i++)
+                {
+                    for (int j = 0; j < col[1]; j++)
+                    {
+                        cout << res0[i][j] << "\t";
+                    }
+                    cout << endl;
+                }
             }
             else
             {
                 cout << "Multiplication is Not Possible!" << endl;
             }
-            break;
+            system("pause");
+            system("CLS");
+        }
+        break;
         case 4:
+        {
+
             if (col[1] == row[0])
             {
                 cout << "Multiplication is Possible!" << endl;
+                float res1[row[1]][col[0]];
+                cout << "Created a Result Matrix of size " << row[1] << "x" << col[0] << endl;
+                cout << "Nullifying the Result Matrix......" << endl;
+                for (int i = 0; i < row[1]; i++)
+                {
+                    for (int j = 0; j < col[0]; j++)
+                    {
+                        res1[i][j] = 0;
+                    }
+                }
+                cout << "Nullified Successfully....." << endl;
+
+                for (int i = 0; i < row[1]; i++)
+                {
+                    for (int j = 0; j < col[0]; j++)
+                    {
+                        for (int k = 0; k < col[1]; k++)
+                        {
+                            res1[i][j] = res1[i][j] + (b[i][k] * a[k][j]);
+                        }
+                    }
+                }
+
+                cout << "Product BxA ::" << endl;
+
+                for (int i = 0; i < row[1]; i++)
+                {
+                    for (int j = 0; j < col[0]; j++)
+                    {
+                        cout << res1[i][j] << "\t";
+                    }
+                    cout << endl;
+                }
             }
             else
             {
                 cout << "Multiplication is Not Possible!" << endl;
-
-                break;
             }
+            system("pause");
+            system("CLS");
+        }
+        break;
         }
         cout << "Do you wish to go back to Menu! [y|Y] :: ";
         cin >> chk;
