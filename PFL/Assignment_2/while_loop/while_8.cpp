@@ -2,10 +2,35 @@
 
 using namespace std;
 
-int main(){
+int main()
+{
+    int start, end, i, j;
+    bool flag = 1;
+    cout << "Enter Range Start :: ";
+    cin >> start;
+    cout << "Enter Range End :: ";
+    cin >> end;
+    i = start;
+    cout << "Range :: " << "(" << start << "," << end << ")" << endl;
+    while (i >= start && i <= end)
+    {
+        j = 2;
+        while (j < i)
+        {
+            if (i % j == 0)
+            {
+                flag = 0;
+            }
+            j++;
+        }
+        if (flag == 1)
+        {
+            cout << i << " is Prime!" << endl;
+        }
+        flag = 1;
+        i++;
+    }
 
-
-    
     system("pause");
     return 0;
 }

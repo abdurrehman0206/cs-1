@@ -1,11 +1,22 @@
 #include <iostream>
-
 using namespace std;
 
-int main(){
-
-
-    
+int main()
+{
+    int nth, i = 1;
+    cout << "Enter a Number :: ";
+    cin >> nth;
+    int cnt = 0, nth_even = 0;
+    while (cnt != nth)
+    {
+        if (i % 2 == 0)
+        {
+            cnt++;
+            nth_even = i;
+        }
+        i++;
+    }
+    cout << nth << "th even number is :: " << nth_even << endl;
     system("pause");
     return 0;
 }
