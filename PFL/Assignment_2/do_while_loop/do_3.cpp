@@ -3,28 +3,65 @@ using namespace std;
 
 int main()
 {
-    int num1, num2, max;
+    float tea = 1.99, cake = 3.99, coffee = 2.49, croissant = 5.99, tax, total = 0;
+    int rank, opt;
+    char chk;
+    cout << "1-->Student" << endl;
+    cout << "2-->Teacher" << endl;
+    cout << "3-->Guest" << endl
+         << endl;
+    cout << "Enter Rank ::";
+    cin >> rank;
 
-    cout << "Enter 1st number ::";
-    cin >> num1;
-    cout << "Enter 2nd number ::";
-    cin >> num2;
-
-    max = (num1 > num2) ? num1 : num2;
-
+    switch (rank)
+    {
+    case 1:
+        tax = 0.29;
+        break;
+    case 2:
+        tax = 0.39;
+        break;
+    case 3:
+        tax = 0.49;
+        break;
+    }
     do
     {
-        if (max % num1 == 0 && max % num2 == 0)
+        system("CLS");
+        cout << "1-->Tea--> $" << tea << endl;
+        cout << "2-->Cake--> $" << cake << endl;
+        cout << "3-->Coffee--> $" << coffee << endl;
+        cout << "4-->Croissant--> $" << croissant << endl
+             << endl;
+        cout << "Enter Option ::";
+        cin >> opt;
+        switch (opt)
         {
-            cout << "LCM :: " << max << endl;
+        case 1:
+            total += tea + tax;
+            break;
+        case 2:
+            total += cake + tax;
+            break;
+        case 3:
+            total += coffee + tax;
+            break;
+        case 4:
+            total += croissant + tax;
+            break;
+        default:
+            cout << "Please Select Correct Option!" << endl;
             break;
         }
-        else
-        {
-            max++;
-        }
-    } while (true);
+        cout << endl
+             << "Do you wish to continue buying [y|Y] :: " << endl;
+        cin >> chk;
 
+    } while (chk == 'Y' || chk == 'y');
+    system("CLS");
+    cout << endl;
+    cout << "Your tax Bracket is $" << tax << endl;
+    cout << "Your Total is $" << total << endl;
     system("pause");
     return 0;
 }
