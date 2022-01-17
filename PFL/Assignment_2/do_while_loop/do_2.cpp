@@ -51,6 +51,11 @@ int main()
                 cout << "Result [a/b] = UNDEFINED" << endl;
                 cout << "Result [b/a] = " << num2 / num1 << endl;
             }
+            else
+            {
+                cout << "Result [a/b] = " << num1 / num2 << endl;
+                cout << "Result [b/a] = " << num2 / num1 << endl;
+            }
             break;
 
         case 5:
@@ -69,6 +74,11 @@ int main()
                 cout << "Remainder [a/b] = UNDEFINED" << endl;
                 cout << "Remainder [b/a] = " << num2 % num1 << endl;
             }
+            else
+            {
+                cout << "Remainder [a/b] = " << num1 / num2 << endl;
+                cout << "Remainder [b/a] = " << num2 / num1 << endl;
+            }
 
             break;
         default:
@@ -76,7 +86,8 @@ int main()
             break;
         }
 
-        cout << endl<< "Do you wish to continue.....? [Y|y] : ";
+        cout << endl
+             << "Do you wish to continue.....? [Y|y] : ";
         cin >> op;
 
     } while (op == 'Y' || op == 'y');
