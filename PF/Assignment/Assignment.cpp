@@ -6,6 +6,7 @@ int main()
 {
     int row[2], col[2];
     int opt;
+    char chk;
 
     cout << "Enter no. of rows of first Matrix :: ";
     cin >> row[0];
@@ -59,6 +60,8 @@ int main()
                     }
                 }
             }
+            system("pause");
+            system("CLS");
             break;
         case 2:
             for (int i = 0; i < 2; i++)
@@ -81,13 +84,34 @@ int main()
                 }
                 cout << endl;
             }
+            system("pause");
+            system("CLS");
             break;
         case 3:
+            if (col[0] == row[1])
+            {
+                cout << "Multiplication is Possible!" << endl;
+            }
+            else
+            {
+                cout << "Multiplication is Not Possible!" << endl;
+            }
             break;
         case 4:
-            break;
+            if (col[1] == row[0])
+            {
+                cout << "Multiplication is Possible!" << endl;
+            }
+            else
+            {
+                cout << "Multiplication is Not Possible!" << endl;
+
+                break;
+            }
         }
-    } while (true);
+        cout << "Do you wish to go back to Menu! [y|Y] :: ";
+        cin >> chk;
+    } while (chk == 'Y' || chk == 'y');
     system("pause");
     return 0;
 }
