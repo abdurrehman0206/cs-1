@@ -3,23 +3,21 @@
 #include <fstream>
 #include <string>
 using namespace std;
-
 struct Data
 {
     string t_name, c_name;
     short cr_h;
 };
-
 struct Table
 {
     string block;
 };
-void d_input(Data *ct[], short *n);
-void d_output(Data *ct, short *n);
+void i_data(Data *ct[], short *n);
+void o_data(Data *ct, short *n);
 void o_file(Data *ct, short *n);
 void i_file(Data *ct, short *n);
 void gen_Table(Data *ct, Table tt[5][6], short *n);
-void t_output(Table tt[5][6]);
+void o_table(Table tt[5][6]);
 void randomize_table(Table tt[5][6]);
 void line(int num);
 int menu();
@@ -27,7 +25,7 @@ int menu();
 ifstream fin;
 ofstream fout;
 
-void d_input(Data *ct, short *n)
+void i_data(Data *ct, short *n)
 {
 
     cout << "Input ::" << endl;
@@ -44,11 +42,9 @@ void d_input(Data *ct, short *n)
         getline(cin, ct[i].t_name);
         cout << endl;
     }
-    system("pause");
-    system("CLS");
 }
 
-void d_output(Data *ct, short *n)
+void o_data(Data *ct, short *n)
 {
     cout << "Teacher \t Course \t C.Hrs" << endl;
 
@@ -57,8 +53,6 @@ void d_output(Data *ct, short *n)
     {
         cout << setw(17) << left << ct[i].t_name << setw(16) << left << ct[i].c_name << ct[i].cr_h << endl;
     }
-    system("pause");
-    system("CLS");
 }
 
 void o_file(Data *ct, short *n)
@@ -124,7 +118,7 @@ void gen_Table(Data *ct, Table tt[5][6], short *n)
     }
 }
 
-void t_output(Table tt[5][6])
+void o_table(Table tt[5][6])
 {
     for (int i = 0; i < 5; i++)
     {
@@ -149,7 +143,6 @@ void randomize_table(Table tt[5][6])
             tt[j][i].block = tt[rn][i].block;
             tt[rn][i].block = temp;
         }
-        cout << endl;
     }
 }
 
@@ -182,10 +175,15 @@ int menu()
          << "|" << endl;
     cout << setw(39) << left << "| 8. Export TimeTable to File"
          << "|" << endl;
+    cout << setw(39) << left << "| 0. QUIT!"
+         << "|" << endl;
     line(39);
     cout << endl;
     cout << "Enter Option :: ";
     cin >> opt;
 
     return opt;
+
+    system("pause");
+    system("CLS");
 }
