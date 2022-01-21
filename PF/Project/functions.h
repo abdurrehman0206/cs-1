@@ -63,14 +63,14 @@ void o_file(Data *ct, short *n)
     cout << "Enter File Name :: ";
     getline(cin, fname);
     fname += ".txt";
-    fout.open(fname, ios::ate | ios::app);
+    fout.open(fname);
     if (fout.is_open())
     {
         cout << "File access granted!" << endl;
         cout << endl;
         for (int i = 0; i < *n; i++)
         {
-            fout << ct[i].t_name << "\t" << ct[i].c_name << "\t" << ct[i].cr_h << endl;
+            fout << ct[i].t_name << " " << ct[i].c_name << " " << ct[i].cr_h << endl;
         }
     }
     else
@@ -96,9 +96,11 @@ void i_file(Data *ct, short *n)
         cout << endl;
         for (int i = 0; i < *n; i++)
         {
+            
             fin >> ct[i].t_name;
             fin >> ct[i].c_name;
             fin >> ct[i].cr_h;
+            fin.sync();
         }
     }
     else
@@ -106,8 +108,7 @@ void i_file(Data *ct, short *n)
         cout << "File access denied!" << endl;
         cout << endl;
     }
-
-    fout.close();
+    fin.close();
 }
 
 void gen_Table(Data *ct, Table tt[5][6], short *n)
@@ -227,9 +228,6 @@ int menu(Data *ct, short n)
     cin >> opt;
 
     return opt;
-
-    system("pause");
-    system("CLS");
 }
 
 bool d_chk(Data *ct, short n)
