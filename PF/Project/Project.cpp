@@ -9,8 +9,10 @@ int main()
 
     do
     {
-        opt = menu();
-
+        opt = menu(ct,n);
+        cout << endl
+             << endl;
+        cout << d_chk(ct, n);
         switch (opt)
         {
         default:

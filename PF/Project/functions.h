@@ -6,13 +6,13 @@ using namespace std;
 struct Data
 {
     string t_name, c_name;
-    short cr_h;
+    short cr_h = 0;
 };
 struct Table
 {
     string block;
 };
-void i_data(Data *ct[], short *n);
+void i_data(Data *ct, short *n);
 void o_data(Data *ct, short *n);
 void o_file(Data *ct, short *n);
 void i_file(Data *ct, short *n);
@@ -20,7 +20,8 @@ void gen_Table(Data *ct, Table tt[5][6], short *n);
 void o_table(Table tt[5][6]);
 void randomize_table(Table tt[5][6]);
 void line(int num);
-int menu();
+int menu(Data *ct, short n);
+bool d_chk(Data *ct, short n);
 
 ifstream fin;
 ofstream fout;
@@ -57,29 +58,60 @@ void o_data(Data *ct, short *n)
 
 void o_file(Data *ct, short *n)
 {
-
-    fout.open("data.txt", ios::ate | ios::app);
-    for (int i = 0; i < *n; i++)
+    cin.ignore();
+    string fname;
+    cout << "Enter File Name :: ";
+    getline(cin, fname);
+    fname += ".txt";
+    fout.open(fname, ios::ate | ios::app);
+    if (fout.is_open())
     {
-        fout << ct[i].t_name << "\t" << ct[i].c_name << "\t" << ct[i].cr_h << endl;
+        cout << "File access granted!" << endl;
+        cout << endl;
+        for (int i = 0; i < *n; i++)
+        {
+            fout << ct[i].t_name << "\t" << ct[i].c_name << "\t" << ct[i].cr_h << endl;
+        }
     }
+    else
+    {
+        cout << "File access denied!" << endl;
+        cout << endl;
+    }
+
     fout.close();
 }
 
 void i_file(Data *ct, short *n)
 {
-    fin.open("data.txt", ios::in);
-    for (int i = 0; i < *n; i++)
+    cin.ignore();
+    string fname;
+    cout << "Enter File Name :: ";
+    getline(cin, fname);
+    fname += ".txt";
+    fin.open(fname, ios::in);
+    if (fin.is_open())
     {
-        fin >> ct[i].t_name;
-        fin >> ct[i].c_name;
-        fin >> ct[i].cr_h;
+        cout << "File access granted!" << endl;
+        cout << endl;
+        for (int i = 0; i < *n; i++)
+        {
+            fin >> ct[i].t_name;
+            fin >> ct[i].c_name;
+            fin >> ct[i].cr_h;
+        }
     }
+    else
+    {
+        cout << "File access denied!" << endl;
+        cout << endl;
+    }
+
+    fout.close();
 }
 
 void gen_Table(Data *ct, Table tt[5][6], short *n)
 {
-    fout.open("table.txt", ios::out);
     int c = 0;
     int cnt = 0;
     for (int i = 0; i < 5; i++)
@@ -155,7 +187,7 @@ void line(int num)
     cout << endl;
 }
 
-int menu()
+int menu(Data *ct, short n)
 {
     int opt;
     line(39);
@@ -176,7 +208,13 @@ int menu()
     cout << setw(39) << left << "| 8. Export TimeTable to File"
          << "|" << endl;
     cout << setw(39) << left << "| 0. QUIT!"
-         << "|" << endl;
+         << "|" << endl
+         << endl;
+    if (d_chk(ct,n) == true)
+    {
+        cout << setw(39) << left << "| DATABASE_STATUS = FILLED"
+             << "|" << endl;
+    }
     line(39);
     cout << endl;
     cout << "Enter Option :: ";
@@ -186,4 +224,24 @@ int menu()
 
     system("pause");
     system("CLS");
+}
+
+bool d_chk(Data *ct, short n)
+{
+    bool chk = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (ct[i].c_name != "" && ct[i].t_name != "" && ct[i].cr_h != 0)
+        {
+            chk++;
+        }
+        if (chk == n)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
