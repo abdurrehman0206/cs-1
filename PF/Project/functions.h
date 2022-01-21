@@ -155,6 +155,7 @@ void gen_Table(Data *ct, Table tt[5][6], short *n)
             }
         }
     }
+    cout << "TimeTable Generated!" << endl;
 }
 
 //Output Table
@@ -188,6 +189,7 @@ void randomize_table(Table tt[5][6])
             tt[rn][i].block = temp;
         }
     }
+    cout << "TimeTable Randomized!" << endl;
 }
 
 //Couts lines
@@ -267,11 +269,11 @@ bool d_chk(Data *ct, short n)
 //Outputing the Generated timetable to file
 void t_o_file(Table tt[5][6])
 {
-    string tabname;
+    string tabname , temp_fname;
+    temp_fname = fname;
+    temp_fname.erase(temp_fname.find(".txt"), 4);
     cin.ignore();
-    cout << "Enter File Name :: ";
-    getline(cin, tabname);
-    tabname += "-" + fname + ".csv";
+    tabname += "TimeTable-" + temp_fname + ".csv";
     fout.open(tabname);
     if (fout.is_open())
     {
@@ -279,12 +281,14 @@ void t_o_file(Table tt[5][6])
         cout << endl;
         for (int i = 0; i < 5; i++)
         {
+            fout << days[i] << ",";
             for (int j = 0; j < 6; j++)
             {
                 fout << tt[i][j].block << ",";
             }
             fout << endl;
         }
+        cout << "TimeTable Written Successfully! :: " << tabname << endl; 
     }
     else
     {
