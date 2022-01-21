@@ -1,0 +1,5 @@
+Amna    English 3
+Altaf_Hussain   PF    3
+Zahir_Shah   PFL   1
+Ahmad_Bin_Javed   Phy   3
+Zobia_Begum   Cal   3
