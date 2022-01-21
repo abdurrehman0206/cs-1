@@ -12,7 +12,6 @@ int main()
         opt = menu(ct,n);
         cout << endl
              << endl;
-        cout << d_chk(ct, n);
         switch (opt)
         {
         default:

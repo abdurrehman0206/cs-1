@@ -208,11 +208,15 @@ int menu(Data *ct, short n)
     cout << setw(39) << left << "| 8. Export TimeTable to File"
          << "|" << endl;
     cout << setw(39) << left << "| 0. QUIT!"
-         << "|" << endl
-         << endl;
-    if (d_chk(ct,n) == true)
+         << "|" << endl;
+    if (d_chk(ct, n) == true)
     {
         cout << setw(39) << left << "| DATABASE_STATUS = FILLED"
+             << "|" << endl;
+    }
+    else
+    {
+        cout << setw(39) << left << "| DATABASE_STATUS = EMPTY"
              << "|" << endl;
     }
     line(39);
@@ -228,20 +232,20 @@ int menu(Data *ct, short n)
 
 bool d_chk(Data *ct, short n)
 {
-    bool chk = 0;
+    int chk = 0;
     for (int i = 0; i < n; i++)
     {
-        if (ct[i].c_name != "" && ct[i].t_name != "" && ct[i].cr_h != 0)
+        if (!ct[i].c_name.empty() && !ct[i].t_name.empty() && ct[i].cr_h != 0)
         {
             chk++;
         }
-        if (chk == n)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+    }
+    if (chk == n)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
