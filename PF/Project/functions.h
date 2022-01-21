@@ -4,6 +4,7 @@
 #include <string>
 using namespace std;
 
+
 struct Data
 {
     string t_name, c_name;
@@ -14,20 +15,18 @@ struct Table
 {
     string block;
 };
+void d_input(Data *ct[], short *n);
+void d_output(Data *ct, short *n);
+void o_file(Data *ct, short *n);
+void i_file(Data *ct, short *n);
+void gen_Table(Data *ct, Table tt[5][6], short *n);
+void t_output(Table tt[5][6]);
+void randomize_table(Table tt[5][6]);
+void line(int num);
+int menu();
 
 ifstream fin;
 ofstream fout;
-
-void nullify(bool chk[5][6])
-{
-    for (int i = 0; i < 5; i++)
-    {
-        for (int j = 0; j < 6; j++)
-        {
-            chk[i][j] = 0;
-        }
-    }
-}
 
 void d_input(Data *ct, short *n)
 {
@@ -65,6 +64,7 @@ void d_output(Data *ct, short *n)
 
 void o_file(Data *ct, short *n)
 {
+
     fout.open("data.txt", ios::ate | ios::app);
     for (int i = 0; i < *n; i++)
     {
@@ -78,14 +78,13 @@ void i_file(Data *ct, short *n)
     fin.open("data.txt", ios::in);
     for (int i = 0; i < *n; i++)
     {
-        //getline(fin, ct[i].t_name);
         fin >> ct[i].t_name;
         fin >> ct[i].c_name;
         fin >> ct[i].cr_h;
     }
 }
 
-void gen_Table(Data *ct, Table tt[5][6], bool chk[5][6], short *n)
+void gen_Table(Data *ct, Table tt[5][6], short *n)
 {
     fout.open("table.txt", ios::out);
     int c = 0;
@@ -126,7 +125,6 @@ void gen_Table(Data *ct, Table tt[5][6], bool chk[5][6], short *n)
     }
 }
 
-
 void t_output(Table tt[5][6])
 {
     for (int i = 0; i < 5; i++)
@@ -154,4 +152,33 @@ void randomize_table(Table tt[5][6])
         }
         cout << endl;
     }
+}
+
+void line(int num)
+{
+    for (int i = 0; i <= num; i++)
+    {
+        cout << "=";
+    }
+    cout << endl;
+}
+
+int menu()
+{
+    int opt;
+    line(35);
+    cout << " 1. Input Data to Database!" << endl;
+    cout << " 2. Write Inputted Data To File!" << endl;
+    cout << " 3. Read Data From File to Database!" << endl;
+    cout << " 4. Output Data Stored in Database!" << endl;
+    cout << " 5. Generate TimeTable!" << endl;
+    cout << " 6. Randomize TimeTable!" << endl;
+    cout << " 7. OutPut TimeTable!" << endl;
+    cout << " 8. Export TimeTable to File!" << endl;
+    line(35);
+    cout << endl;
+    cout << "Enter Option :: ";
+    cin >> opt;
+
+    return opt;
 }

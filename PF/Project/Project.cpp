@@ -6,6 +6,10 @@ int main()
     Data ct[n];
     Table tt[5][6];
 
+    // do{
+
+    // } while (true);
+    menu();
     system("pause");
     return 0;
 }
