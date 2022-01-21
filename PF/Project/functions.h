@@ -4,7 +4,6 @@
 #include <string>
 using namespace std;
 
-
 struct Data
 {
     string t_name, c_name;
@@ -166,16 +165,24 @@ void line(int num)
 int menu()
 {
     int opt;
-    line(35);
-    cout << " 1. Input Data to Database!" << endl;
-    cout << " 2. Write Inputted Data To File!" << endl;
-    cout << " 3. Read Data From File to Database!" << endl;
-    cout << " 4. Output Data Stored in Database!" << endl;
-    cout << " 5. Generate TimeTable!" << endl;
-    cout << " 6. Randomize TimeTable!" << endl;
-    cout << " 7. OutPut TimeTable!" << endl;
-    cout << " 8. Export TimeTable to File!" << endl;
-    line(35);
+    line(39);
+    cout << setw(39) << left << "| 1. Input Data to Database"
+         << "|" << endl;
+    cout << setw(39) << left << "| 2. Write Inputted Data To File"
+         << "|" << endl;
+    cout << setw(39) << left << "| 3. Read Data From File to Database"
+         << "|" << endl;
+    cout << setw(39) << left << "| 4. Output Data Stored in Database"
+         << "|" << endl;
+    cout << setw(39) << left << "| 5. Generate TimeTable"
+         << "|" << endl;
+    cout << setw(39) << left << "| 6. Randomize TimeTable"
+         << "|" << endl;
+    cout << setw(39) << left << "| 7. OutPut TimeTable"
+         << "|" << endl;
+    cout << setw(39) << left << "| 8. Export TimeTable to File"
+         << "|" << endl;
+    line(39);
     cout << endl;
     cout << "Enter Option :: ";
     cin >> opt;
