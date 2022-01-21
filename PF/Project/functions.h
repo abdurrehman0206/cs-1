@@ -114,9 +114,6 @@ void gen_Table(Data *ct, Table tt[5][6], bool chk[5][6], short *n)
             }
         }
     }
-}
-void add_Break(Table tt[5][6])
-{
     for (int i = 0; i < 5; i++)
     {
         for (int j = 0; j < 6; j++)
@@ -128,6 +125,7 @@ void add_Break(Table tt[5][6])
         }
     }
 }
+
 
 void t_output(Table tt[5][6])
 {
