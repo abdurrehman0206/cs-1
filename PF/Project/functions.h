@@ -209,6 +209,8 @@ int menu(Data *ct, short n)
          << "|" << endl;
     cout << setw(39) << left << "| 0. QUIT!"
          << "|" << endl;
+    cout << setw(39) << left << "|"
+         << "|" << endl;
     if (d_chk(ct, n) == true)
     {
         cout << setw(39) << left << "| DATABASE_STATUS = FILLED"
