@@ -3,6 +3,9 @@
 #include <fstream>
 #include <string>
 using namespace std;
+
+const string days[] = {"Monday","Tuesday","Wednesday","Thursday","Friday"};
+string fname;
 struct Data
 {
     string t_name, c_name;
@@ -26,6 +29,7 @@ bool d_chk(Data *ct, short n);
 ifstream fin;
 ofstream fout;
 
+//Database Input
 void i_data(Data *ct, short *n)
 {
 
@@ -45,6 +49,7 @@ void i_data(Data *ct, short *n)
     }
 }
 
+//Database Output
 void o_data(Data *ct, short *n)
 {
     cout << "Teacher \t Course \t C.Hrs" << endl;
@@ -56,10 +61,10 @@ void o_data(Data *ct, short *n)
     }
 }
 
+//File Output
 void o_file(Data *ct, short *n)
 {
     cin.ignore();
-    string fname;
     cout << "Enter File Name :: ";
     getline(cin, fname);
     fname += ".txt";
@@ -82,10 +87,10 @@ void o_file(Data *ct, short *n)
     fout.close();
 }
 
+//File Input
 void i_file(Data *ct, short *n)
 {
-    cin.ignore();
-    string fname;
+    cin.ignore();  
     cout << "Enter File Name :: ";
     getline(cin, fname);
     fname += ".txt";
@@ -111,6 +116,7 @@ void i_file(Data *ct, short *n)
     fin.close();
 }
 
+//Generate Table
 void gen_Table(Data *ct, Table tt[5][6], short *n)
 {
     int c = 0;
@@ -151,18 +157,23 @@ void gen_Table(Data *ct, Table tt[5][6], short *n)
     }
 }
 
+//Output Table
 void o_table(Table tt[5][6])
 {
     for (int i = 0; i < 5; i++)
     {
+        cout << setw(10) << days[i] <<setw(5)<< "|";
         for (int j = 0; j < 6; j++)
         {
             cout << setw(17) << left << tt[i][j].block;
         }
         cout << endl;
+        cout << setw(10)<<"";
+        cout<< "|" << endl;
     }
 }
 
+//Randomized Time Table
 void randomize_table(Table tt[5][6])
 {
     int rn;
@@ -179,6 +190,7 @@ void randomize_table(Table tt[5][6])
     }
 }
 
+//Couts lines
 void line(int num)
 {
     for (int i = 0; i <= num; i++)
@@ -188,6 +200,7 @@ void line(int num)
     cout << endl;
 }
 
+//displays menu
 int menu(Data *ct, short n)
 {
     int opt;
@@ -214,7 +227,7 @@ int menu(Data *ct, short n)
          << "|" << endl;
     if (d_chk(ct, n) == true)
     {
-        cout << setw(39) << left << "| DATABASE_STATUS = FILLED"
+        cout <<"| DATABASE_STATUS = FILLED [" <<fname<< setw(3) << left<<"]" 
              << "|" << endl;
     }
     else
@@ -230,6 +243,7 @@ int menu(Data *ct, short n)
     return opt;
 }
 
+//checks whether the database is empty or full 
 bool d_chk(Data *ct, short n)
 {
     int chk = 0;
