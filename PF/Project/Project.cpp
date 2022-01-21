@@ -58,6 +58,9 @@ int main()
             system("CLS");
             break;
         case 8:
+            t_o_file(tt);
+            system("pause");
+            system("CLS");
             break;
         }
     } while (true);

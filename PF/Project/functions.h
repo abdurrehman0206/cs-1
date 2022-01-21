@@ -263,3 +263,31 @@ bool d_chk(Data *ct, short n)
         return false;
     }
 }
+
+//Outputing the Generated timetable to file
+void t_o_file(Table tt[5][6]){
+    string tabname;
+    cin.ignore();  
+    cout << "Enter File Name :: ";
+    getline(cin, tabname);
+    tabname += ".csv";
+    fout.open(tabname);
+    if (fout.is_open())
+    {
+        cout << "File access granted!" << endl;
+        cout << endl;
+        for (int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j < 6; j++){
+                fout << tt[i][j].block << ",";
+            }
+            fout << endl;
+        }
+    }
+    else
+    {
+        cout << "File access denied!" << endl;
+        cout << endl;
+    }
+    fin.close();
+}
