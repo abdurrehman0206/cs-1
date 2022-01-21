@@ -77,8 +77,10 @@ void o_file(Data *ct, short *n)
     fout.open(fname);
     if (fout.is_open())
     {
+        color(10);
         cout << "File access granted!" << endl;
         cout << endl;
+        color(15);
         for (int i = 0; i < *n; i++)
         {
             fout << ct[i].t_name << " " << ct[i].c_name << " " << ct[i].cr_h << endl;
@@ -86,8 +88,10 @@ void o_file(Data *ct, short *n)
     }
     else
     {
+        color(12);
         cout << "File access denied!" << endl;
         cout << endl;
+        color(15);
     }
 
     fout.close();
@@ -103,8 +107,10 @@ void i_file(Data *ct, short *n)
     fin.open(fname, ios::in);
     if (fin.is_open())
     {
+        color(10);
         cout << "File access granted!" << endl;
         cout << endl;
+        color(15);
         for (int i = 0; i < *n; i++)
         {
 
@@ -116,8 +122,10 @@ void i_file(Data *ct, short *n)
     }
     else
     {
+        color(12);
         cout << "File access denied!" << endl;
         cout << endl;
+        color(15);
     }
     fin.close();
 }
@@ -287,10 +295,10 @@ void t_o_file(Table tt[5][6])
     fout.open(tabname);
     if (fout.is_open())
     {
-
+        color(10);
         cout << "File access granted!" << endl;
-
         cout << endl;
+        color(15);
         for (int i = 0; i < 5; i++)
         {
             fout << days[i] << ",";
@@ -304,8 +312,11 @@ void t_o_file(Table tt[5][6])
     }
     else
     {
+        color(12);
         cout << "File access denied!" << endl;
         cout << endl;
+        color(15);
     }
     fout.close();
 }
+
