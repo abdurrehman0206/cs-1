@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <windows.h>
 using namespace std;
 
 const string days[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
@@ -29,6 +30,11 @@ bool d_chk(Data *ct, short n);
 ifstream fin;
 ofstream fout;
 
+void color(int n)
+{
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(console, n);
+}
 //Database Input
 void i_data(Data *ct, short *n)
 {
@@ -229,13 +235,17 @@ int menu(Data *ct, short n)
          << "|" << endl;
     if (d_chk(ct, n) == true)
     {
+        color(10);
         cout << "| DATABASE_STATUS = FILLED [" << fname << setw(3) << left << "]"
              << "|" << endl;
+        color(15);
     }
     else
     {
+        color(12);
         cout << setw(39) << left << "| DATABASE_STATUS = EMPTY"
              << "|" << endl;
+        color(15);
     }
     line(39);
     cout << endl;
@@ -269,7 +279,7 @@ bool d_chk(Data *ct, short n)
 //Outputing the Generated timetable to file
 void t_o_file(Table tt[5][6])
 {
-    string tabname , temp_fname;
+    string tabname, temp_fname;
     temp_fname = fname;
     temp_fname.erase(temp_fname.find(".txt"), 4);
     cin.ignore();
@@ -277,7 +287,9 @@ void t_o_file(Table tt[5][6])
     fout.open(tabname);
     if (fout.is_open())
     {
+
         cout << "File access granted!" << endl;
+
         cout << endl;
         for (int i = 0; i < 5; i++)
         {
@@ -288,7 +300,7 @@ void t_o_file(Table tt[5][6])
             }
             fout << endl;
         }
-        cout << "TimeTable Written Successfully! :: " << tabname << endl; 
+        cout << "TimeTable Written Successfully! :: " << tabname << endl;
     }
     else
     {
