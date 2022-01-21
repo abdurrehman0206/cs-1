@@ -9,7 +9,7 @@ int main()
 
     do
     {
-        opt = menu(ct,n);
+        opt = menu(ct, n);
         cout << endl
              << endl;
         switch (opt)
@@ -59,6 +59,11 @@ int main()
             break;
         case 8:
             t_o_file(tt);
+            system("pause");
+            system("CLS");
+            break;
+        case 9:
+            wipe(ct, &n);
             system("pause");
             system("CLS");
             break;

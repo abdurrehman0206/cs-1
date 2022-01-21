@@ -26,6 +26,7 @@ void randomize_table(Table tt[5][6]);
 void line(int num);
 int menu(Data *ct, short n);
 bool d_chk(Data *ct, short n);
+void wipe(Data *ct, short *n);
 
 ifstream fin;
 ofstream fout;
@@ -237,6 +238,8 @@ int menu(Data *ct, short n)
          << "|" << endl;
     cout << setw(39) << left << "| 8. Export TimeTable to File"
          << "|" << endl;
+    cout << setw(39) << left << "| 9. WIPE DATABASE!"
+         << "|" << endl;
     cout << setw(39) << left << "| 0. QUIT!"
          << "|" << endl;
     cout << setw(39) << left << "|"
@@ -320,3 +323,16 @@ void t_o_file(Table tt[5][6])
     fout.close();
 }
 
+void wipe(Data *ct, short *n)
+{
+    for (int i = 0; i < *n; i++)
+    {
+        ct[i].c_name = "";
+        ct[i].t_name = "";
+        ct[i].cr_h = 0;
+    }
+    color(10);
+    cout << "DataBase Wiped Successfully!" << endl;
+    cout << endl;
+    color(15);
+}
