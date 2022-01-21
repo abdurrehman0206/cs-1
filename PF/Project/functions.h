@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-const string days[] = {"Monday","Tuesday","Wednesday","Thursday","Friday"};
+const string days[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 string fname;
 struct Data
 {
@@ -90,7 +90,7 @@ void o_file(Data *ct, short *n)
 //File Input
 void i_file(Data *ct, short *n)
 {
-    cin.ignore();  
+    cin.ignore();
     cout << "Enter File Name :: ";
     getline(cin, fname);
     fname += ".txt";
@@ -101,7 +101,7 @@ void i_file(Data *ct, short *n)
         cout << endl;
         for (int i = 0; i < *n; i++)
         {
-            
+
             fin >> ct[i].t_name;
             fin >> ct[i].c_name;
             fin >> ct[i].cr_h;
@@ -162,14 +162,14 @@ void o_table(Table tt[5][6])
 {
     for (int i = 0; i < 5; i++)
     {
-        cout << setw(10) << days[i] <<setw(5)<< "|";
+        cout << setw(10) << days[i] << setw(5) << "|";
         for (int j = 0; j < 6; j++)
         {
             cout << setw(17) << left << tt[i][j].block;
         }
         cout << endl;
-        cout << setw(10)<<"";
-        cout<< "|" << endl;
+        cout << setw(10) << "";
+        cout << "|" << endl;
     }
 }
 
@@ -227,7 +227,7 @@ int menu(Data *ct, short n)
          << "|" << endl;
     if (d_chk(ct, n) == true)
     {
-        cout <<"| DATABASE_STATUS = FILLED [" <<fname<< setw(3) << left<<"]" 
+        cout << "| DATABASE_STATUS = FILLED [" << fname << setw(3) << left << "]"
              << "|" << endl;
     }
     else
@@ -243,7 +243,7 @@ int menu(Data *ct, short n)
     return opt;
 }
 
-//checks whether the database is empty or full 
+//checks whether the database is empty or full
 bool d_chk(Data *ct, short n)
 {
     int chk = 0;
@@ -265,12 +265,13 @@ bool d_chk(Data *ct, short n)
 }
 
 //Outputing the Generated timetable to file
-void t_o_file(Table tt[5][6]){
+void t_o_file(Table tt[5][6])
+{
     string tabname;
-    cin.ignore();  
+    cin.ignore();
     cout << "Enter File Name :: ";
     getline(cin, tabname);
-    tabname += ".csv";
+    tabname += "-" + fname + ".csv";
     fout.open(tabname);
     if (fout.is_open())
     {
@@ -278,7 +279,8 @@ void t_o_file(Table tt[5][6]){
         cout << endl;
         for (int i = 0; i < 5; i++)
         {
-            for(int j = 0; j < 6; j++){
+            for (int j = 0; j < 6; j++)
+            {
                 fout << tt[i][j].block << ",";
             }
             fout << endl;
@@ -289,5 +291,5 @@ void t_o_file(Table tt[5][6]){
         cout << "File access denied!" << endl;
         cout << endl;
     }
-    fin.close();
+    fout.close();
 }
