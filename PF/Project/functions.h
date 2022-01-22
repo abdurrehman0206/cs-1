@@ -6,7 +6,7 @@
 using namespace std;
 
 const string days[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
-string fname;
+string fname = "";
 struct Data
 {
     string t_name, c_name;
@@ -16,6 +16,7 @@ struct Table
 {
     string block;
 };
+//ProtoTyping so its possible to use every function in every other function
 void i_data(Data *ct, short *n);
 void o_data(Data *ct, short *n);
 void o_file(Data *ct, short *n);
@@ -28,11 +29,12 @@ int menu(Data *ct, short n);
 bool d_chk(Data *ct, short n);
 void wipe(Data *ct, short *n);
 int menu_mod(Data *ct, short n);
-
+void s_chk(Data *ct, short *n);
+void siz(short *n);
 
 ifstream fin;
 ofstream fout;
-
+//Using WinApi and STD_Handle for colors
 void color(int n)
 {
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -56,6 +58,7 @@ void i_data(Data *ct, short *n)
         getline(cin, ct[i].t_name);
         cout << endl;
     }
+    s_chk(ct, n);
 }
 
 //Database Output
@@ -225,10 +228,10 @@ int menu(Data *ct, short n)
     cout << setw(39) << left << "| 1. Input Data to Database"
          << "|" << endl;
 
-    cout << setw(39) << left << "| 2. Write Inputted Data To File"
+    cout << setw(39) << left << "| 2. Export Database To File"
          << "|" << endl;
 
-    cout << setw(39) << left << "| 3. Read Data From File to Database"
+    cout << setw(39) << left << "| 3. Import Data From File to Database"
          << "|" << endl;
 
     cout << setw(39) << left << "| 4. Output Data Stored in Database"
@@ -336,18 +339,29 @@ void t_o_file(Table tt[5][6])
     fout.close();
 }
 
+//Wiping the data stored in database i.e struct
 void wipe(Data *ct, short *n)
 {
-    for (int i = 0; i < *n; i++)
+    if (!ct[0].c_name.empty() && !ct[0].t_name.empty() && ct[0].cr_h != 0)
     {
-        ct[i].c_name = "";
-        ct[i].t_name = "";
-        ct[i].cr_h = 0;
+        for (int i = 0; i < *n; i++)
+        {
+            ct[i].c_name = "";
+            ct[i].t_name = "";
+            ct[i].cr_h = 0;
+        }
+        color(10);
+        cout << "DataBase Wiped Successfully!" << endl;
+        cout << endl;
+        color(15);
     }
-    color(10);
-    cout << "DataBase Wiped Successfully!" << endl;
-    cout << endl;
-    color(15);
+    else
+    {
+        color(12);
+        cout << "DataBase Already Empty!" << endl;
+        cout << endl;
+        color(15);
+    }
 }
 
 //modded menu using simple if-else and goto and flagging(for concepts)
@@ -370,8 +384,8 @@ label1:
     if (opt == 1)
     {
         color(10);
-        cout << setw(39) << left << "| 1. Input Data to Database"
-             << "|" << endl;
+        cout << setw(39) << left << "> 1. Input Data to Database"
+             << "<" << endl;
         color(15);
     }
     else
@@ -383,8 +397,8 @@ label1:
     if (opt == 2)
     {
         color(10);
-        cout << setw(39) << left << "| 2. Export Database To File"
-             << "|" << endl;
+        cout << setw(39) << left << "> 2. Export Database To File"
+             << "<" << endl;
         color(15);
     }
     else
@@ -395,8 +409,8 @@ label1:
     if (opt == 3)
     {
         color(10);
-        cout << setw(39) << left << "| 3. Import Data From File to Database"
-             << "|" << endl;
+        cout << setw(39) << left << "> 3. Import Data From File to Database"
+             << "<" << endl;
         color(15);
     }
     else
@@ -408,8 +422,8 @@ label1:
     if (opt == 4)
     {
         color(10);
-        cout << setw(39) << left << "| 4. Output Data Stored in Database"
-             << "|" << endl;
+        cout << setw(39) << left << "> 4. Output Data Stored in Database"
+             << "<" << endl;
         color(15);
     }
     else
@@ -420,8 +434,8 @@ label1:
     if (opt == 5)
     {
         color(10);
-        cout << setw(39) << left << "| 5. Generate TimeTable"
-             << "|" << endl;
+        cout << setw(39) << left << "> 5. Generate TimeTable"
+             << "<" << endl;
         color(15);
     }
     else
@@ -433,8 +447,8 @@ label1:
     if (opt == 6)
     {
         color(10);
-        cout << setw(39) << left << "| 6. Randomize TimeTable"
-             << "|" << endl;
+        cout << setw(39) << left << "> 6. Randomize TimeTable"
+             << "<" << endl;
         color(15);
     }
     else
@@ -445,8 +459,8 @@ label1:
     if (opt == 7)
     {
         color(10);
-        cout << setw(39) << left << "| 7. OutPut TimeTable"
-             << "|" << endl;
+        cout << setw(39) << left << "> 7. OutPut TimeTable"
+             << "<" << endl;
         color(15);
     }
     else
@@ -458,8 +472,8 @@ label1:
     if (opt == 8)
     {
         color(10);
-        cout << setw(39) << left << "| 8. Export TimeTable to File"
-             << "|" << endl;
+        cout << setw(39) << left << "> 8. Export TimeTable to File"
+             << "<" << endl;
         color(15);
     }
     else
@@ -470,8 +484,8 @@ label1:
     if (opt == 9)
     {
         color(10);
-        cout << setw(39) << left << "| 9. WIPE DATABASE!"
-             << "|" << endl;
+        cout << setw(39) << left << "> 9. WIPE DATABASE!"
+             << "<" << endl;
         color(15);
     }
     else
@@ -484,17 +498,16 @@ label1:
 
     cout << setw(39) << left << "|"
          << "|" << endl;
+    line(39);
     if (d_chk(ct, n) == true)
     {
         color(10);
-        cout << "| DATABASE_STATUS = FILLED [" << fname << setw(3) << left << "]"
-             << "|" << endl;
+        cout << "> DATABASE_STATUS = FULL  [" <<  fname << "]"<< endl;
     }
     else
     {
         color(12);
-        cout << setw(39) << left << "| DATABASE_STATUS = EMPTY"
-             << "|" << endl;
+        cout << "> DATABASE_STATUS = EMPTY" << endl;
     }
     color(15);
     line(39);
@@ -506,4 +519,42 @@ label1:
         goto label1;
     }
     return opt;
+}
+
+void s_chk(Data *ct, short *n)
+{
+    int cr_sum = 0;
+    for (int i = 0; i < *n; i++)
+    {
+        cr_sum += ct[i].cr_h;
+    }
+    if (cr_sum > 30)
+    {
+        color(12);
+        cout << "Classes Cannot Fit in one Week!" << endl;
+        color(15);
+    }
+    else
+    {
+        color(10);
+        cout << "Classes Can Fit in one Week!" << endl;
+        color(15);
+    }
+}
+
+void siz(short *n)
+{
+    int chk = 0;
+    string garbage;
+    fin.open("data.txt");
+
+    if (fin.is_open())
+    {
+        while (!fin.eof())
+        {
+            fin >> garbage;
+            chk++;
+        }
+    }
+    *n = chk/3;
 }

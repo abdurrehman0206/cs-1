@@ -6,7 +6,6 @@ int main()
     short n = 6;
     Data ct[n];
     Table tt[5][6];
-
     do
     {
         opt = menu_mod(ct, n);
@@ -69,7 +68,6 @@ int main()
             break;
         }
     } while (true);
-
     system("pause");
     return 0;
 }
