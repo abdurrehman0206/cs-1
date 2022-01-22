@@ -60,8 +60,6 @@ void i_data(Data *ct, short *n)
 void o_data(Data *ct, short *n)
 {
     cout << "Teacher \t Course \t C.Hrs" << endl;
-
-    cout << endl;
     for (int i = 0; i < *n; i++)
     {
         cout << setw(17) << left << ct[i].t_name << setw(16) << left << ct[i].c_name << ct[i].cr_h << endl;
@@ -79,7 +77,7 @@ void o_file(Data *ct, short *n)
     if (fout.is_open())
     {
         color(10);
-        cout << "File access granted!" << endl;
+        cout << fname << " access granted!" << endl;
         cout << endl;
         color(15);
         for (int i = 0; i < *n; i++)
@@ -109,7 +107,7 @@ void i_file(Data *ct, short *n)
     if (fin.is_open())
     {
         color(10);
-        cout << "File access granted!" << endl;
+        cout << fname << " access granted!" << endl;
         cout << endl;
         color(15);
         for (int i = 0; i < *n; i++)
@@ -224,45 +222,55 @@ int menu(Data *ct, short n)
     line(39);
     cout << setw(39) << left << "| 1. Input Data to Database"
          << "|" << endl;
+
     cout << setw(39) << left << "| 2. Write Inputted Data To File"
          << "|" << endl;
+
     cout << setw(39) << left << "| 3. Read Data From File to Database"
          << "|" << endl;
+
     cout << setw(39) << left << "| 4. Output Data Stored in Database"
          << "|" << endl;
+
     cout << setw(39) << left << "| 5. Generate TimeTable"
          << "|" << endl;
+
     cout << setw(39) << left << "| 6. Randomize TimeTable"
          << "|" << endl;
+
     cout << setw(39) << left << "| 7. OutPut TimeTable"
          << "|" << endl;
+
     cout << setw(39) << left << "| 8. Export TimeTable to File"
          << "|" << endl;
+
     cout << setw(39) << left << "| 9. WIPE DATABASE!"
          << "|" << endl;
+
     cout << setw(39) << left << "| 0. QUIT!"
          << "|" << endl;
+
     cout << setw(39) << left << "|"
          << "|" << endl;
+
     if (d_chk(ct, n) == true)
     {
         color(10);
         cout << "| DATABASE_STATUS = FILLED [" << fname << setw(3) << left << "]"
              << "|" << endl;
-        color(15);
     }
     else
     {
         color(12);
         cout << setw(39) << left << "| DATABASE_STATUS = EMPTY"
              << "|" << endl;
-        color(15);
     }
+    color(15);
     line(39);
     cout << endl;
     cout << "Enter Option :: ";
     cin >> opt;
-
+    
     return opt;
 }
 
@@ -299,7 +307,8 @@ void t_o_file(Table tt[5][6])
     if (fout.is_open())
     {
         color(10);
-        cout << "File access granted!" << endl;
+        cout << tabname << " generated Successfully!" << endl;
+        cout << tabname << " access granted!" << endl;
         cout << endl;
         color(15);
         for (int i = 0; i < 5; i++)
