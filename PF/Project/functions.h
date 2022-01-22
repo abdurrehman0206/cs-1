@@ -25,10 +25,10 @@ void gen_Table(Data *ct, Table tt[5][6], short *n);
 void o_table(Table tt[5][6]);
 void randomize_table(Table tt[5][6]);
 void line(int num);
-int menu(Data *ct, short n);
-bool d_chk(Data *ct, short n);
+int menu(Data *ct, short *n);
+bool d_chk(Data *ct, short *n);
 void wipe(Data *ct, short *n);
-int menu_mod(Data *ct, short n);
+int menu_mod(Data *ct, short *n);
 void s_chk(Data *ct, short *n);
 void siz(short *n);
 
@@ -40,11 +40,15 @@ void color(int n)
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(console, n);
 }
+
 //Database Input
 void i_data(Data *ct, short *n)
 {
-
+    short inp;
     cout << "Input ::" << endl;
+    cout << "Enter Number of Courses :: ";
+    cin >> inp;
+    *n = inp;
     cout << endl;
     cin.ignore();
     for (int i = 0; i < *n; i++)
@@ -87,7 +91,7 @@ void o_file(Data *ct, short *n)
         color(15);
         for (int i = 0; i < *n; i++)
         {
-            fout << ct[i].t_name << " " << ct[i].c_name << " " << ct[i].cr_h << endl;
+            fout << ct[i].t_name << "\t" << ct[i].c_name << "\t" << ct[i].cr_h << endl;
         }
     }
     else
@@ -97,7 +101,6 @@ void o_file(Data *ct, short *n)
         cout << endl;
         color(15);
     }
-
     fout.close();
 }
 
@@ -108,6 +111,7 @@ void i_file(Data *ct, short *n)
     cout << "Enter File Name :: ";
     getline(cin, fname);
     fname += ".txt";
+    siz(n);
     fin.open(fname, ios::in);
     if (fin.is_open())
     {
@@ -121,7 +125,6 @@ void i_file(Data *ct, short *n)
             fin >> ct[i].t_name;
             fin >> ct[i].c_name;
             fin >> ct[i].cr_h;
-            fin.sync();
         }
     }
     else
@@ -139,9 +142,11 @@ void gen_Table(Data *ct, Table tt[5][6], short *n)
 {
     int c = 0;
     int cnt = 0;
+    short tm = *n;
+    tm -= 1;
     for (int i = 0; i < 5; i++)
     {
-        if (c > 5)
+        if (c > tm)
         {
             break;
         }
@@ -155,7 +160,7 @@ void gen_Table(Data *ct, Table tt[5][6], short *n)
             else if (cnt >= ct[c].cr_h)
             {
                 c++;
-                if (c > 5)
+                if (c > tm)
                 {
                     break;
                 }
@@ -221,76 +226,77 @@ void line(int num)
 }
 
 //displays menu
-int menu(Data *ct, short n)
-{
-    int opt;
-    line(39);
-    cout << setw(39) << left << "| 1. Input Data to Database"
-         << "|" << endl;
+// int menu(Data *ct, short *n)
+// {
+//     int opt;
+//     line(39);
+//     cout << setw(39) << left << "| 1. Input Data to Database"
+//          << "|" << endl;
 
-    cout << setw(39) << left << "| 2. Export Database To File"
-         << "|" << endl;
+//     cout << setw(39) << left << "| 2. Export Database To File"
+//          << "|" << endl;
 
-    cout << setw(39) << left << "| 3. Import Data From File to Database"
-         << "|" << endl;
+//     cout << setw(39) << left << "| 3. Import Data From File to Database"
+//          << "|" << endl;
 
-    cout << setw(39) << left << "| 4. Output Data Stored in Database"
-         << "|" << endl;
+//     cout << setw(39) << left << "| 4. Output Data Stored in Database"
+//          << "|" << endl;
 
-    cout << setw(39) << left << "| 5. Generate TimeTable"
-         << "|" << endl;
+//     cout << setw(39) << left << "| 5. Generate TimeTable"
+//          << "|" << endl;
 
-    cout << setw(39) << left << "| 6. Randomize TimeTable"
-         << "|" << endl;
+//     cout << setw(39) << left << "| 6. Randomize TimeTable"
+//          << "|" << endl;
 
-    cout << setw(39) << left << "| 7. OutPut TimeTable"
-         << "|" << endl;
+//     cout << setw(39) << left << "| 7. OutPut TimeTable"
+//          << "|" << endl;
 
-    cout << setw(39) << left << "| 8. Export TimeTable to File"
-         << "|" << endl;
+//     cout << setw(39) << left << "| 8. Export TimeTable to File"
+//          << "|" << endl;
 
-    cout << setw(39) << left << "| 9. WIPE DATABASE!"
-         << "|" << endl;
+//     cout << setw(39) << left << "| 9. WIPE DATABASE!"
+//          << "|" << endl;
 
-    cout << setw(39) << left << "| 0. QUIT!"
-         << "|" << endl;
+//     cout << setw(39) << left << "| 0. QUIT!"
+//          << "|" << endl;
 
-    cout << setw(39) << left << "|"
-         << "|" << endl;
+//     cout << setw(39) << left << "|"
+//          << "|" << endl;
 
-    if (d_chk(ct, n) == true)
-    {
-        color(10);
-        cout << "| DATABASE_STATUS = FILLED [" << fname << setw(3) << left << "]"
-             << "|" << endl;
-    }
-    else
-    {
-        color(12);
-        cout << setw(39) << left << "| DATABASE_STATUS = EMPTY"
-             << "|" << endl;
-    }
-    color(15);
-    line(39);
-    cout << endl;
-    cout << "Enter Option :: ";
-    cin >> opt;
+//     if (d_chk(ct,n) == true)
+//     {
+//         color(10);
+//         cout << "| DATABASE_STATUS = FILLED [" << fname << setw(3) << left << "]"
+//              << "|" << endl;
+//     }
+//     else
+//     {
+//         color(12);
+//         cout << setw(39) << left << "| DATABASE_STATUS = EMPTY"
+//              << "|" << endl;
+//     }
+//     color(15);
+//     line(39);
+//     cout << endl;
+//     cout << "Enter Option :: ";
+//     cin >> opt;
 
-    return opt;
-}
+//     return opt;
+// }
 
 //checks whether the database is empty or full
-bool d_chk(Data *ct, short n)
+bool d_chk(Data *ct, short *n)
 {
+    //siz(n);
     int chk = 0;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < *n; i++)
     {
         if (!ct[i].c_name.empty() && !ct[i].t_name.empty() && ct[i].cr_h != 0)
         {
             chk++;
         }
     }
-    if (chk == n)
+    if (chk == *n && *n != 0)
     {
         return true;
     }
@@ -365,8 +371,13 @@ void wipe(Data *ct, short *n)
 }
 
 //modded menu using simple if-else and goto and flagging(for concepts)
-int menu_mod(Data *ct, short n)
+int menu_mod(Data *ct, short *n)
 {
+    if (fname != "")
+    {
+        siz(n);
+    }
+
     bool flip = 0;
     int opt = -1;
 label1:
@@ -502,12 +513,16 @@ label1:
     if (d_chk(ct, n) == true)
     {
         color(10);
-        cout << "> DATABASE_STATUS = FULL  [" <<  fname << "]"<< endl;
+        cout << "> DATABASE_STATUS = FULL  [" << fname << "]" << endl;
+        cout << "> NUMBERS_STATUS = "
+             << "[" << *n << "]" << endl;
     }
     else
     {
         color(12);
         cout << "> DATABASE_STATUS = EMPTY" << endl;
+        cout << "> NUMBERS_STATUS = "
+             << "[" << *n << "]" << endl;
     }
     color(15);
     line(39);
@@ -546,7 +561,7 @@ void siz(short *n)
 {
     int chk = 0;
     string garbage;
-    fin.open("data.txt");
+    fin.open(fname);
 
     if (fin.is_open())
     {
@@ -556,5 +571,6 @@ void siz(short *n)
             chk++;
         }
     }
-    *n = chk/3;
+    fin.close();
+    *n = chk / 3;
 }

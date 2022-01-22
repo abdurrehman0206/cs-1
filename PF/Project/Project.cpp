@@ -3,12 +3,14 @@
 int main()
 {
     int opt;
-    short n = 6;
+    char yn;
+    short n= 6;
     Data ct[n];
     Table tt[5][6];
     do
     {
-        opt = menu_mod(ct, n);
+
+        opt = menu_mod(ct, &n);
         cout << endl
              << endl;
         switch (opt)
@@ -19,7 +21,13 @@ int main()
             system("CLS");
             break;
         case 0:
-            exit(0);
+            cout << "Local DataBase will be lost!" << endl;
+            cout << "Are you sure you want to QUIT![y|Y] :: ";
+            cin >> yn;
+            if (yn == 'y' || yn == 'Y')
+            {
+                exit(0);
+            }
             break;
         case 1:
             i_data(ct, &n);
