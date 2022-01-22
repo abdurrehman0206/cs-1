@@ -322,7 +322,9 @@ void t_o_file(Table tt[5][6])
             }
             fout << endl;
         }
-        cout << "TimeTable Written Successfully! :: " << tabname << endl;
+        color(10);
+        cout << "TimeTable Written Successfully to " << tabname << endl;
+        color(15);
     }
     else
     {
@@ -381,25 +383,25 @@ label1:
     if (opt == 2)
     {
         color(10);
-        cout << setw(39) << left << "| 2. Write Inputted Data To File"
+        cout << setw(39) << left << "| 2. Export Database To File"
              << "|" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "| 2. Write Inputted Data To File"
+        cout << setw(39) << left << "| 2. Export Database To File"
              << "|" << endl;
     }
     if (opt == 3)
     {
         color(10);
-        cout << setw(39) << left << "| 3. Read Data From File to Database"
+        cout << setw(39) << left << "| 3. Import Data From File to Database"
              << "|" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "| 3. Read Data From File to Database"
+        cout << setw(39) << left << "| 3. Import Data From File to Database"
              << "|" << endl;
     }
 
