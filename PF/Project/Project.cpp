@@ -9,7 +9,7 @@ int main()
 
     do
     {
-        opt = menu(ct, n);
+        opt = menu_mod(ct, n);
         cout << endl
              << endl;
         switch (opt)

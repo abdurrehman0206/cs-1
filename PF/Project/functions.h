@@ -27,6 +27,8 @@ void line(int num);
 int menu(Data *ct, short n);
 bool d_chk(Data *ct, short n);
 void wipe(Data *ct, short *n);
+int menu_mod(Data *ct, short n);
+
 
 ifstream fin;
 ofstream fout;
@@ -270,7 +272,7 @@ int menu(Data *ct, short n)
     cout << endl;
     cout << "Enter Option :: ";
     cin >> opt;
-    
+
     return opt;
 }
 
@@ -344,4 +346,162 @@ void wipe(Data *ct, short *n)
     cout << "DataBase Wiped Successfully!" << endl;
     cout << endl;
     color(15);
+}
+
+//modded menu using simple if-else and goto and flagging(for concepts)
+int menu_mod(Data *ct, short n)
+{
+    bool flip = 0;
+    int opt = -1;
+label1:
+    if (opt == -1)
+    {
+        flip = 0;
+    }
+    else
+    {
+        flip = 1;
+    }
+    system("CLS");
+
+    line(39);
+    if (opt == 1)
+    {
+        color(10);
+        cout << setw(39) << left << "| 1. Input Data to Database"
+             << "|" << endl;
+        color(15);
+    }
+    else
+    {
+        cout << setw(39) << left << "| 1. Input Data to Database"
+             << "|" << endl;
+    }
+
+    if (opt == 2)
+    {
+        color(10);
+        cout << setw(39) << left << "| 2. Write Inputted Data To File"
+             << "|" << endl;
+        color(15);
+    }
+    else
+    {
+        cout << setw(39) << left << "| 2. Write Inputted Data To File"
+             << "|" << endl;
+    }
+    if (opt == 3)
+    {
+        color(10);
+        cout << setw(39) << left << "| 3. Read Data From File to Database"
+             << "|" << endl;
+        color(15);
+    }
+    else
+    {
+        cout << setw(39) << left << "| 3. Read Data From File to Database"
+             << "|" << endl;
+    }
+
+    if (opt == 4)
+    {
+        color(10);
+        cout << setw(39) << left << "| 4. Output Data Stored in Database"
+             << "|" << endl;
+        color(15);
+    }
+    else
+    {
+        cout << setw(39) << left << "| 4. Output Data Stored in Database"
+             << "|" << endl;
+    }
+    if (opt == 5)
+    {
+        color(10);
+        cout << setw(39) << left << "| 5. Generate TimeTable"
+             << "|" << endl;
+        color(15);
+    }
+    else
+    {
+        cout << setw(39) << left << "| 5. Generate TimeTable"
+             << "|" << endl;
+    }
+
+    if (opt == 6)
+    {
+        color(10);
+        cout << setw(39) << left << "| 6. Randomize TimeTable"
+             << "|" << endl;
+        color(15);
+    }
+    else
+    {
+        cout << setw(39) << left << "| 6. Randomize TimeTable"
+             << "|" << endl;
+    }
+    if (opt == 7)
+    {
+        color(10);
+        cout << setw(39) << left << "| 7. OutPut TimeTable"
+             << "|" << endl;
+        color(15);
+    }
+    else
+    {
+        cout << setw(39) << left << "| 7. OutPut TimeTable"
+             << "|" << endl;
+    }
+
+    if (opt == 8)
+    {
+        color(10);
+        cout << setw(39) << left << "| 8. Export TimeTable to File"
+             << "|" << endl;
+        color(15);
+    }
+    else
+    {
+        cout << setw(39) << left << "| 8. Export TimeTable to File"
+             << "|" << endl;
+    }
+    if (opt == 9)
+    {
+        color(10);
+        cout << setw(39) << left << "| 9. WIPE DATABASE!"
+             << "|" << endl;
+        color(15);
+    }
+    else
+    {
+        cout << setw(39) << left << "| 9. WIPE DATABASE!"
+             << "|" << endl;
+    }
+    cout << setw(39) << left << "| 0. QUIT!"
+         << "|" << endl;
+
+    cout << setw(39) << left << "|"
+         << "|" << endl;
+    if (d_chk(ct, n) == true)
+    {
+        color(10);
+        cout << "| DATABASE_STATUS = FILLED [" << fname << setw(3) << left << "]"
+             << "|" << endl;
+    }
+    else
+    {
+        color(12);
+        cout << setw(39) << left << "| DATABASE_STATUS = EMPTY"
+             << "|" << endl;
+    }
+    color(15);
+    line(39);
+    if (opt == -1 && flip == 0)
+    {
+        cout << endl;
+        cout << "Enter Option :: ";
+        cin >> opt;
+        goto label1;
+    }
+    return opt;
 }
