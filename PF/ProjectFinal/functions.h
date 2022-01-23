@@ -31,17 +31,26 @@ void randomize_table(Table tt[5][6]);
 void line(int num);
 bool d_chk(Data *ct, short *n);
 void wipe(Data *ct, short *n);
-int menu_mod(Data *ct, short *n);
+int mod_menu(Data *ct, short *n);
 int s_chk(Data *ct, short *n);
 void siz(short *n);
-
+int selection(Data *ct, short *n);
+HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 ifstream fin;
 ofstream fout;
+
 //Using WinApi and STD_Handle for colors
 void color(int n)
 {
-    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(console, n);
+}
+
+void g_xy(int x, int y)
+{
+    COORD cp;
+    cp.X = x;
+    cp.Y = y;
+    SetConsoleCursorPosition(console, cp);
 }
 
 //Database Input
@@ -85,7 +94,7 @@ void o_data(Data *ct, short *n)
 //File Output
 void o_file(Data *ct, short *n)
 {
-    cin.ignore();
+
     cout << "Enter File Name :: ";
     getline(cin, fname);
     fname += ".txt";
@@ -109,12 +118,13 @@ void o_file(Data *ct, short *n)
         color(15);
     }
     fout.close();
+    cin.ignore();
 }
 
 //File Input
 void i_file(Data **ct, short *n)
 {
-    cin.ignore();
+    //cin.ignore();
     cout << "Enter File Name :: ";
     getline(cin, fname);
     fname += ".txt";
@@ -325,8 +335,38 @@ void wipe(Data *ct, short *n)
 }
 
 //modded menu using simple if-else and goto and flagging(for concepts)
-int menu_mod(Data *ct, short *n)
+
+int s_chk(Data *ct, short *n)
 {
+    int cr_sum = 0;
+    for (int i = 0; i < *n; i++)
+    {
+        cr_sum += ct[i].cr_h;
+    }
+    return cr_sum;
+}
+
+void siz(short *n)
+{
+    int chk = 0;
+    string garbage;
+    fin.open(fname);
+
+    if (fin.is_open())
+    {
+        while (!fin.eof())
+        {
+            fin >> garbage;
+            chk++;
+        }
+    }
+    fin.close();
+    *n = chk / 3;
+}
+
+int mod_menu(Data *ct, short *n)
+{
+
     bool flip = 0;
     int opt = -1;
 label1:
@@ -344,116 +384,116 @@ label1:
     if (opt == 1)
     {
         color(10);
-        cout << setw(39) << left << "> 1. Input Data to Database"
+        cout << setw(39) << left << ">     Input Data to Database"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "| 1. Input Data to Database"
+        cout << setw(39) << left << "|     Input Data to Database"
              << "|" << endl;
     }
 
     if (opt == 2)
     {
         color(10);
-        cout << setw(39) << left << "> 2. Export Database To File"
+        cout << setw(39) << left << ">     Export Database To File"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "| 2. Export Database To File"
+        cout << setw(39) << left << "|     Export Database To File"
              << "|" << endl;
     }
     if (opt == 3)
     {
         color(10);
-        cout << setw(39) << left << "> 3. Import Data From File to Database"
+        cout << setw(39) << left << ">     Import Data From File to Database"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "| 3. Import Data From File to Database"
+        cout << setw(39) << left << "|     Import Data From File to Database"
              << "|" << endl;
     }
 
     if (opt == 4)
     {
         color(10);
-        cout << setw(39) << left << "> 4. Output Data Stored in Database"
+        cout << setw(39) << left << ">     Output Data Stored in Database"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "| 4. Output Data Stored in Database"
+        cout << setw(39) << left << "|     Output Data Stored in Database"
              << "|" << endl;
     }
     if (opt == 5)
     {
         color(10);
-        cout << setw(39) << left << "> 5. Generate TimeTable"
+        cout << setw(39) << left << ">     Generate TimeTable"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "| 5. Generate TimeTable"
+        cout << setw(39) << left << "|     Generate TimeTable"
              << "|" << endl;
     }
 
     if (opt == 6)
     {
         color(10);
-        cout << setw(39) << left << "> 6. Randomize TimeTable"
+        cout << setw(39) << left << ">     Randomize TimeTable"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "| 6. Randomize TimeTable"
+        cout << setw(39) << left << "|     Randomize TimeTable"
              << "|" << endl;
     }
     if (opt == 7)
     {
         color(10);
-        cout << setw(39) << left << "> 7. OutPut TimeTable"
+        cout << setw(39) << left << ">     OutPut TimeTable"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "| 7. OutPut TimeTable"
+        cout << setw(39) << left << "|     OutPut TimeTable"
              << "|" << endl;
     }
 
     if (opt == 8)
     {
         color(10);
-        cout << setw(39) << left << "> 8. Export TimeTable to File"
+        cout << setw(39) << left << ">     Export TimeTable to File"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "| 8. Export TimeTable to File"
+        cout << setw(39) << left << "|     Export TimeTable to File"
              << "|" << endl;
     }
     if (opt == 9)
     {
         color(10);
-        cout << setw(39) << left << "> 9. WIPE DATABASE!"
+        cout << setw(39) << left << ">     WIPE DATABASE!"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "| 9. WIPE DATABASE!"
+        cout << setw(39) << left << "|     WIPE DATABASE!"
              << "|" << endl;
     }
-    cout << setw(39) << left << "| 0. QUIT!"
+    cout << setw(39) << left << "|     QUIT!"
          << "|" << endl;
 
     cout << setw(39) << left << "|"
@@ -520,39 +560,132 @@ label1:
     line(39);
     if (opt == -1 && flip == 0)
     {
-
-        cout << endl;
-        cout << "Enter Option :: ";
-        cin >> opt;
+        opt = selection(ct, n);
         goto label1;
     }
     return opt;
 }
 
-int s_chk(Data *ct, short *n)
+int selection(Data *ct, short *n)
 {
-    int cr_sum = 0;
-    for (int i = 0; i < *n; i++)
-    {
-        cr_sum += ct[i].cr_h;
-    }
-    return cr_sum;
-}
 
-void siz(short *n)
-{
-    int chk = 0;
-    string garbage;
-    fin.open(fname);
+    unsigned int pos = 0, y = 0;
+    int opt = -1;
+    g_xy(4, 1);
+    color(12);
 
-    if (fin.is_open())
+    while (true)
     {
-        while (!fin.eof())
+        system("pause>nul");
+
+        if (GetAsyncKeyState(VK_DOWN) && y <= 10)
         {
-            fin >> garbage;
-            chk++;
+            g_xy(2, y);
+            if (y == 0)
+            {
+                color(15);
+                cout << "===";
+                color(12);
+            }
+            else
+            {
+                cout << "   ";
+            }
+            y++;
+            g_xy(2, y);
+            cout << "==>";
+            pos++;
+            continue;
+        }
+        if (GetAsyncKeyState(VK_UP) && y > 1)
+        {
+
+            g_xy(2, y);
+            cout << "   ";
+            y--;
+            g_xy(2, y);
+            cout << "==>";
+            pos--;
+            continue;
+        }
+
+        if (GetAsyncKeyState(VK_RETURN))
+        {
+            color(15);
+            switch (pos)
+            {
+
+            default:
+            {
+                break;
+            }
+
+            case 1:
+            {
+                opt = 1;
+                return opt;
+                break;
+            }
+
+            case 2:
+            {
+
+                opt = 2;
+                return opt;
+                break;
+            }
+
+            case 3:
+            {
+                opt = 3;
+                return opt;
+                break;
+            }
+
+            case 4:
+            {
+                opt = 4;
+                return opt;
+                break;
+            }
+            case 5:
+            {
+                opt = 5;
+                return opt;
+                break;
+            }
+            case 6:
+            {
+                opt = 6;
+                return opt;
+                break;
+            }
+            case 7:
+            {
+                opt = 7;
+                return opt;
+                break;
+            }
+            case 8:
+            {
+                opt = 8;
+                return opt;
+                break;
+            }
+            case 9:
+            {
+                opt = 9;
+                return opt;
+                break;
+            }
+            case 10:
+            {
+                opt = 10;
+                return opt;
+                break;
+            }
+            }
         }
     }
-    fin.close();
-    *n = chk / 3;
+    return opt;
 }

@@ -9,7 +9,7 @@ int main()
     do
     {
 
-        opt = menu_mod(ct, &n);
+        opt = mod_menu(ct, &n);
         cout << endl
              << endl;
         switch (opt)
@@ -19,7 +19,7 @@ int main()
             system("pause");
             system("CLS");
             break;
-        case 0:
+        case 10:
             cout << "Local DataBase will be lost!" << endl;
             cout << "Are you sure you want to QUIT![y|Y] :: ";
             cin >> yn;
