@@ -20,7 +20,6 @@ Data *ct = new Data[n];
 const string days[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 string fname = "Nil";
 
-
 //ProtoTyping so its possible to use every function in every other function
 void i_data(Data **ct, short *n);
 void o_data(Data *ct, short *n);
@@ -34,7 +33,7 @@ int menu(Data *ct, short *n);
 bool d_chk(Data *ct, short *n);
 void wipe(Data *ct, short *n);
 int menu_mod(Data *ct, short *n);
-void s_chk(Data *ct, short *n);
+int s_chk(Data *ct, short *n);
 void siz(short *n);
 
 ifstream fin;
@@ -62,7 +61,7 @@ void i_data(Data **ct, short *n)
     {
         cout << "Enter Course " << i + 1 << " :: ";
         getline(cin, t[i].c_name);
-        cout << "Enter Credit Hours of " << t[i].c_name<< " :: ";
+        cout << "Enter Credit Hours of " << t[i].c_name << " :: ";
         cin >> t[i].cr_h;
         cin.ignore();
         cout << "Enter Teacher for " << t[i].c_name << " :: ";
@@ -380,6 +379,7 @@ void wipe(Data *ct, short *n)
         cout << endl;
         color(15);
     }
+    *n = 0;
 }
 
 //modded menu using simple if-else and goto and flagging(for concepts)
@@ -520,70 +520,96 @@ label1:
     if (d_chk(ct, n) == true)
     {
         color(10);
-        cout << setw(39) << left << "|> DATABASE_STATUS = FULL " << "|"<< endl;
-        if(fname == "Nil"){
-            color(12);
-            cout << "|> BACKEND_FILE = "<<setw(21) << left << fname <<"|" << endl;
-        }else{
-            color(10);
-            cout << "|> BACKEND_FILE = " << setw(21) << left  << fname <<"|" << endl;
-        }
-        
-    }
-    else
-    {
-        color(12);
-        cout <<setw(39) << left << "|> DATABASE_STATUS = EMPTY" << "|"<< endl;
-        
-    }
-    color(15);
-    cout << "|> C_NUM_STATUS = "<< setw(21) << left << *n << "|"<< endl;
-    line(39);
-    if (opt == -1 && flip == 0)
-    {
-        cout << endl;
-        cout << "Enter Option :: ";
-        cin >> opt;
-        goto label1;
-    }
-    return opt;
-}
-
-void s_chk(Data *ct, short *n)
-{
-    int cr_sum = 0;
-    for (int i = 0; i < *n; i++)
-    {
-        cr_sum += ct[i].cr_h;
-    }
-    if (cr_sum > 30)
-    {
-        color(12);
-        cout << "Classes Cannot Fit in one Week!" << endl;
-        color(15);
-    }
-    else
-    {
-        color(10);
-        cout << "Classes Can Fit in one Week!" << endl;
-        color(15);
-    }
-}
-
-void siz(short *n)
-{
-    int chk = 0;
-    string garbage;
-    fin.open(fname);
-
-    if (fin.is_open())
-    {
-        while (!fin.eof())
+        cout << setw(39) << left << "|> DATABASE_STATUS = FULL "
+             << "|" << endl;
+        if (fname == "Nil")
         {
-            fin >> garbage;
-            chk++;
+            color(12);
+            cout << "|> BACKEND_FILE = " << setw(21) << left << fname << "|" << endl;
+        }
+        else
+        {
+            color(10);
+            cout << "|> BACKEND_FILE = " << setw(21) << left << fname << "|" << endl;
         }
     }
-    fin.close();
-    *n = chk / 3;
+    else
+    {
+        color(12);
+        cout << setw(39) << left << "|> DATABASE_STATUS = EMPTY"
+             << "|" << endl;
+        if (fname == "Nil")
+        {
+            color(12);
+            cout << "|> BACKEND_FILE = " << setw(21) << left << fname << "|" << endl;
+        }
+        else
+        {
+            color(10);
+            cout << "|> BACKEND_FILE = " << setw(21) << left << fname << "|" << endl;
+        }
+        if (s_chk(ct, n) == 0 && *n == 0)
+        {
+            color(12);
+            cout << "|> C_NUM_STATUS = " << setw(21) << left << *n << "|" << endl;
+            cout << "|> C_HRS_STATUS = " << setw(21) << left << s_chk(ct, n) << "|" << endl;
+        }
+        else
+        {
+            color(10);
+            cout << "|> C_NUM_STATUS = " << setw(21) << left << *n << "|" << endl;
+            cout << "|> C_HRS_STATUS = " << setw(21) << left << s_chk(ct, n) << "|" << endl;
+        }
+        color(15);
+
+        line(39);
+        if (opt == -1 && flip == 0)
+        {
+            cout << endl;
+            cout << "Enter Option :: ";
+            cin >> opt;
+            goto label1;
+        }
+        return opt;
+    }
 }
+
+    int s_chk(Data * ct, short *n)
+    {
+        int cr_sum = 0;
+        for (int i = 0; i < *n; i++)
+        {
+            cr_sum += ct[i].cr_h;
+        }
+        // if (cr_sum > 30)
+        // {
+        //     color(12);
+        //     cout << "Classes Cannot Fit in one Week!" << endl;
+        //     color(15);
+        // }
+        // else
+        // {
+        //     color(10);
+        //     cout << "Classes Can Fit in one Week!" << endl;
+        //     color(15);
+        // }
+        return cr_sum;
+    }
+
+    void siz(short *n)
+    {
+        int chk = 0;
+        string garbage;
+        fin.open(fname);
+
+        if (fin.is_open())
+        {
+            while (!fin.eof())
+            {
+                fin >> garbage;
+                chk++;
+            }
+        }
+        fin.close();
+        *n = chk / 3;
+    }
