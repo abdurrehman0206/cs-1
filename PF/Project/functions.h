@@ -29,7 +29,6 @@ void gen_Table(Data *ct, Table tt[5][6], short *n);
 void o_table(Table tt[5][6]);
 void randomize_table(Table tt[5][6]);
 void line(int num);
-int menu(Data *ct, short *n);
 bool d_chk(Data *ct, short *n);
 void wipe(Data *ct, short *n);
 int menu_mod(Data *ct, short *n);
@@ -146,6 +145,7 @@ void i_file(Data **ct, short *n)
     fin.close();
     *ct = t;
     delete t;
+    cin.ignore();
 }
 
 //Generate Table
@@ -236,65 +236,6 @@ void line(int num)
     cout << endl;
 }
 
-//displays menu
-// int menu(Data *ct, short *n)
-// {
-//     int opt;
-//     line(39);
-//     cout << setw(39) << left << "| 1. Input Data to Database"
-//          << "|" << endl;
-
-//     cout << setw(39) << left << "| 2. Export Database To File"
-//          << "|" << endl;
-
-//     cout << setw(39) << left << "| 3. Import Data From File to Database"
-//          << "|" << endl;
-
-//     cout << setw(39) << left << "| 4. Output Data Stored in Database"
-//          << "|" << endl;
-
-//     cout << setw(39) << left << "| 5. Generate TimeTable"
-//          << "|" << endl;
-
-//     cout << setw(39) << left << "| 6. Randomize TimeTable"
-//          << "|" << endl;
-
-//     cout << setw(39) << left << "| 7. OutPut TimeTable"
-//          << "|" << endl;
-
-//     cout << setw(39) << left << "| 8. Export TimeTable to File"
-//          << "|" << endl;
-
-//     cout << setw(39) << left << "| 9. WIPE DATABASE!"
-//          << "|" << endl;
-
-//     cout << setw(39) << left << "| 0. QUIT!"
-//          << "|" << endl;
-
-//     cout << setw(39) << left << "|"
-//          << "|" << endl;
-
-//     if (d_chk(ct,n) == true)
-//     {
-//         color(10);
-//         cout << "| DATABASE_STATUS = FILLED [" << fname << setw(3) << left << "]"
-//              << "|" << endl;
-//     }
-//     else
-//     {
-//         color(12);
-//         cout << setw(39) << left << "| DATABASE_STATUS = EMPTY"
-//              << "|" << endl;
-//     }
-//     color(15);
-//     line(39);
-//     cout << endl;
-//     cout << "Enter Option :: ";
-//     cin >> opt;
-
-//     return opt;
-// }
-
 //checks whether the database is empty or full
 bool d_chk(Data *ct, short *n)
 {
@@ -379,6 +320,7 @@ void wipe(Data *ct, short *n)
         cout << endl;
         color(15);
     }
+    fname = "Nil";
     *n = 0;
 }
 
@@ -532,6 +474,18 @@ label1:
             color(10);
             cout << "|> BACKEND_FILE = " << setw(21) << left << fname << "|" << endl;
         }
+        if (s_chk(ct, n) == 0 && *n == 0)
+        {
+            color(12);
+            cout << "|> C_NUM_STATUS = " << setw(21) << left << *n << "|" << endl;
+            cout << "|> C_HRS_STATUS = " << setw(21) << left << s_chk(ct, n) << "|" << endl;
+        }
+        else
+        {
+            color(10);
+            cout << "|> C_NUM_STATUS = " << setw(21) << left << *n << "|" << endl;
+            cout << "|> C_HRS_STATUS = " << setw(21) << left << s_chk(ct, n) << "|" << endl;
+        }
     }
     else
     {
@@ -560,56 +514,57 @@ label1:
             cout << "|> C_NUM_STATUS = " << setw(21) << left << *n << "|" << endl;
             cout << "|> C_HRS_STATUS = " << setw(21) << left << s_chk(ct, n) << "|" << endl;
         }
-        color(15);
-
-        line(39);
-        if (opt == -1 && flip == 0)
-        {
-            cout << endl;
-            cout << "Enter Option :: ";
-            cin >> opt;
-            goto label1;
-        }
-        return opt;
     }
+    color(15);
+
+    line(39);
+    if (opt == -1 && flip == 0)
+    {
+
+        cout << endl;
+        cout << "Enter Option :: ";
+        cin >> opt;
+        goto label1;
+    }
+    return opt;
 }
 
-    int s_chk(Data * ct, short *n)
+int s_chk(Data *ct, short *n)
+{
+    int cr_sum = 0;
+    for (int i = 0; i < *n; i++)
     {
-        int cr_sum = 0;
-        for (int i = 0; i < *n; i++)
-        {
-            cr_sum += ct[i].cr_h;
-        }
-        // if (cr_sum > 30)
-        // {
-        //     color(12);
-        //     cout << "Classes Cannot Fit in one Week!" << endl;
-        //     color(15);
-        // }
-        // else
-        // {
-        //     color(10);
-        //     cout << "Classes Can Fit in one Week!" << endl;
-        //     color(15);
-        // }
-        return cr_sum;
+        cr_sum += ct[i].cr_h;
     }
+    // if (cr_sum > 30)
+    // {
+    //     color(12);
+    //     cout << "Classes Cannot Fit in one Week!" << endl;
+    //     color(15);
+    // }
+    // else
+    // {
+    //     color(10);
+    //     cout << "Classes Can Fit in one Week!" << endl;
+    //     color(15);
+    // }
+    return cr_sum;
+}
 
-    void siz(short *n)
+void siz(short *n)
+{
+    int chk = 0;
+    string garbage;
+    fin.open(fname);
+
+    if (fin.is_open())
     {
-        int chk = 0;
-        string garbage;
-        fin.open(fname);
-
-        if (fin.is_open())
+        while (!fin.eof())
         {
-            while (!fin.eof())
-            {
-                fin >> garbage;
-                chk++;
-            }
+            fin >> garbage;
+            chk++;
         }
-        fin.close();
-        *n = chk / 3;
     }
+    fin.close();
+    *n = chk / 3;
+}
