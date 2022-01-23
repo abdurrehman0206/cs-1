@@ -536,18 +536,6 @@ int s_chk(Data *ct, short *n)
     {
         cr_sum += ct[i].cr_h;
     }
-    // if (cr_sum > 30)
-    // {
-    //     color(12);
-    //     cout << "Classes Cannot Fit in one Week!" << endl;
-    //     color(15);
-    // }
-    // else
-    // {
-    //     color(10);
-    //     cout << "Classes Can Fit in one Week!" << endl;
-    //     color(15);
-    // }
     return cr_sum;
 }
 
