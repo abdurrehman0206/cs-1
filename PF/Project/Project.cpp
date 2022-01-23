@@ -4,8 +4,7 @@ int main()
 {
     int opt;
     char yn;
-    short n= 6;
-    Data ct[n];
+    
     Table tt[5][6];
     do
     {
@@ -30,7 +29,7 @@ int main()
             }
             break;
         case 1:
-            i_data(ct, &n);
+            i_data(&ct, &n);
             system("pause");
             system("CLS");
             break;
@@ -40,7 +39,7 @@ int main()
             system("CLS");
             break;
         case 3:
-            i_file(ct, &n);
+            i_file(&ct, &n);
             system("pause");
             system("CLS");
             break;
@@ -76,6 +75,7 @@ int main()
             break;
         }
     } while (true);
+    delete[] ct;
     system("pause");
     return 0;
 }

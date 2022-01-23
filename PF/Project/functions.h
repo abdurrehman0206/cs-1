@@ -5,8 +5,6 @@
 #include <windows.h>
 using namespace std;
 
-const string days[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
-string fname = "";
 struct Data
 {
     string t_name, c_name;
@@ -16,11 +14,18 @@ struct Table
 {
     string block;
 };
+
+short n;
+Data *ct = new Data[n];
+const string days[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+string fname = "Nil";
+
+
 //ProtoTyping so its possible to use every function in every other function
-void i_data(Data *ct, short *n);
+void i_data(Data **ct, short *n);
 void o_data(Data *ct, short *n);
 void o_file(Data *ct, short *n);
-void i_file(Data *ct, short *n);
+void i_file(Data **ct, short *n);
 void gen_Table(Data *ct, Table tt[5][6], short *n);
 void o_table(Table tt[5][6]);
 void randomize_table(Table tt[5][6]);
@@ -42,27 +47,31 @@ void color(int n)
 }
 
 //Database Input
-void i_data(Data *ct, short *n)
+void i_data(Data **ct, short *n)
 {
     short inp;
     cout << "Input ::" << endl;
     cout << "Enter Number of Courses :: ";
     cin >> inp;
     *n = inp;
+    fname = "Nil";
+    Data *t = new Data[inp];
     cout << endl;
     cin.ignore();
     for (int i = 0; i < *n; i++)
     {
         cout << "Enter Course " << i + 1 << " :: ";
-        getline(cin, ct[i].c_name);
-        cout << "Enter Credit Hours of " << ct[i].c_name << " :: ";
-        cin >> ct[i].cr_h;
+        getline(cin, t[i].c_name);
+        cout << "Enter Credit Hours of " << t[i].c_name<< " :: ";
+        cin >> t[i].cr_h;
         cin.ignore();
-        cout << "Enter Teacher for " << ct[i].c_name << " :: ";
-        getline(cin, ct[i].t_name);
+        cout << "Enter Teacher for " << t[i].c_name << " :: ";
+        getline(cin, t[i].t_name);
         cout << endl;
     }
-    s_chk(ct, n);
+    *ct = t;
+    delete t;
+    s_chk(*ct, n);
 }
 
 //Database Output
@@ -105,13 +114,14 @@ void o_file(Data *ct, short *n)
 }
 
 //File Input
-void i_file(Data *ct, short *n)
+void i_file(Data **ct, short *n)
 {
     cin.ignore();
     cout << "Enter File Name :: ";
     getline(cin, fname);
     fname += ".txt";
     siz(n);
+    Data *t = new Data[*n];
     fin.open(fname, ios::in);
     if (fin.is_open())
     {
@@ -122,9 +132,9 @@ void i_file(Data *ct, short *n)
         for (int i = 0; i < *n; i++)
         {
 
-            fin >> ct[i].t_name;
-            fin >> ct[i].c_name;
-            fin >> ct[i].cr_h;
+            fin >> t[i].t_name;
+            fin >> t[i].c_name;
+            fin >> t[i].cr_h;
         }
     }
     else
@@ -135,6 +145,8 @@ void i_file(Data *ct, short *n)
         color(15);
     }
     fin.close();
+    *ct = t;
+    delete t;
 }
 
 //Generate Table
@@ -373,11 +385,6 @@ void wipe(Data *ct, short *n)
 //modded menu using simple if-else and goto and flagging(for concepts)
 int menu_mod(Data *ct, short *n)
 {
-    if (fname != "")
-    {
-        siz(n);
-    }
-
     bool flip = 0;
     int opt = -1;
 label1:
@@ -513,18 +520,24 @@ label1:
     if (d_chk(ct, n) == true)
     {
         color(10);
-        cout << "> DATABASE_STATUS = FULL  [" << fname << "]" << endl;
-        cout << "> NUMBERS_STATUS = "
-             << "[" << *n << "]" << endl;
+        cout << setw(39) << left << "|> DATABASE_STATUS = FULL " << "|"<< endl;
+        if(fname == "Nil"){
+            color(12);
+            cout << "|> BACKEND_FILE = "<<setw(21) << left << fname <<"|" << endl;
+        }else{
+            color(10);
+            cout << "|> BACKEND_FILE = " << setw(21) << left  << fname <<"|" << endl;
+        }
+        
     }
     else
     {
         color(12);
-        cout << "> DATABASE_STATUS = EMPTY" << endl;
-        cout << "> NUMBERS_STATUS = "
-             << "[" << *n << "]" << endl;
+        cout <<setw(39) << left << "|> DATABASE_STATUS = EMPTY" << "|"<< endl;
+        
     }
     color(15);
+    cout << "|> C_NUM_STATUS = "<< setw(21) << left << *n << "|"<< endl;
     line(39);
     if (opt == -1 && flip == 0)
     {
