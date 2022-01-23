@@ -380,184 +380,184 @@ label1:
     }
     system("CLS");
 
-    line(39);
+    line(43);
     if (opt == 1)
     {
         color(10);
-        cout << setw(39) << left << ">     Input Data to Database"
+        cout << setw(43) << left << "> Input Data to Database"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "|     Input Data to Database"
+        cout << setw(43) << left << "| Input Data to Database"
              << "|" << endl;
     }
 
     if (opt == 2)
     {
         color(10);
-        cout << setw(39) << left << ">     Export Database To File"
+        cout << setw(43) << left << "> Export Database To File"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "|     Export Database To File"
+        cout << setw(43) << left << "| Export Database To File"
              << "|" << endl;
     }
     if (opt == 3)
     {
         color(10);
-        cout << setw(39) << left << ">     Import Data From File to Database"
+        cout << setw(43) << left << "> Import Data From File to Database"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "|     Import Data From File to Database"
+        cout << setw(43) << left << "| Import Data From File to Database"
              << "|" << endl;
     }
 
     if (opt == 4)
     {
         color(10);
-        cout << setw(39) << left << ">     Output Data Stored in Database"
+        cout << setw(43) << left << "> Output Data Stored in Database"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "|     Output Data Stored in Database"
+        cout << setw(43) << left << "| Output Data Stored in Database"
              << "|" << endl;
     }
     if (opt == 5)
     {
         color(10);
-        cout << setw(39) << left << ">     Generate TimeTable"
+        cout << setw(43) << left << "> Generate TimeTable"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "|     Generate TimeTable"
+        cout << setw(43) << left << "| Generate TimeTable"
              << "|" << endl;
     }
 
     if (opt == 6)
     {
         color(10);
-        cout << setw(39) << left << ">     Randomize TimeTable"
+        cout << setw(43) << left << "> Randomize TimeTable"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "|     Randomize TimeTable"
+        cout << setw(43) << left << "| Randomize TimeTable"
              << "|" << endl;
     }
     if (opt == 7)
     {
         color(10);
-        cout << setw(39) << left << ">     OutPut TimeTable"
+        cout << setw(43) << left << "> utPut TimeTable"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "|     OutPut TimeTable"
+        cout << setw(43) << left << "| OutPut TimeTable"
              << "|" << endl;
     }
 
     if (opt == 8)
     {
         color(10);
-        cout << setw(39) << left << ">     Export TimeTable to File"
+        cout << setw(43) << left << "> Export TimeTable to File"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "|     Export TimeTable to File"
+        cout << setw(43) << left << "| Export TimeTable to File"
              << "|" << endl;
     }
     if (opt == 9)
     {
         color(10);
-        cout << setw(39) << left << ">     WIPE DATABASE!"
+        cout << setw(43) << left << "> WIPE DATABASE!"
              << "<" << endl;
         color(15);
     }
     else
     {
-        cout << setw(39) << left << "|     WIPE DATABASE!"
+        cout << setw(43) << left << "| WIPE DATABASE!"
              << "|" << endl;
     }
-    cout << setw(39) << left << "|     QUIT!"
+    cout << setw(43) << left << "| QUIT!"
          << "|" << endl;
 
-    cout << setw(39) << left << "|"
+    cout << setw(43) << left << "|"
          << "|" << endl;
-    line(39);
+    line(43);
     if (d_chk(ct, n) == true)
     {
         color(10);
-        cout << setw(39) << left << "|> DATABASE_STATUS = FULL "
+        cout << setw(43) << left << "| DATABASE_STATUS = FULL "
              << "|" << endl;
         if (fname == "Nil")
         {
             color(12);
-            cout << "|> BACKEND_FILE = " << setw(21) << left << fname << "|" << endl;
+            cout << "| BACKEND_FILE = " << setw(26) << left << fname << "|" << endl;
         }
         else
         {
             color(10);
-            cout << "|> BACKEND_FILE = " << setw(21) << left << fname << "|" << endl;
+            cout << "| BACKEND_FILE = " << setw(26) << left << fname << "|" << endl;
         }
         if (s_chk(ct, n) == 0 && *n == 0)
         {
             color(12);
-            cout << "|> C_NUM_STATUS = " << setw(21) << left << *n << "|" << endl;
-            cout << "|> C_HRS_STATUS = " << setw(21) << left << s_chk(ct, n) << "|" << endl;
+            cout << "| C_NUM_STATUS = " << setw(26) << left << *n << "|" << endl;
+            cout << "| C_HRS_STATUS = " << setw(26) << left << s_chk(ct, n) << "|" << endl;
         }
         else
         {
             color(10);
-            cout << "|> C_NUM_STATUS = " << setw(21) << left << *n << "|" << endl;
-            cout << "|> C_HRS_STATUS = " << setw(21) << left << s_chk(ct, n) << "|" << endl;
+            cout << "| C_NUM_STATUS = " << setw(26) << left << *n << "|" << endl;
+            cout << "| C_HRS_STATUS = " << setw(26) << left << s_chk(ct, n) << "|" << endl;
         }
     }
     else
     {
         color(12);
-        cout << setw(39) << left << "|> DATABASE_STATUS = EMPTY"
+        cout << setw(43) << left << "| DATABASE_STATUS = EMPTY"
              << "|" << endl;
         if (fname == "Nil")
         {
             color(12);
-            cout << "|> BACKEND_FILE = " << setw(21) << left << fname << "|" << endl;
+            cout << "| BACKEND_FILE = " << setw(26) << left << fname << "|" << endl;
         }
         else
         {
             color(10);
-            cout << "|> BACKEND_FILE = " << setw(21) << left << fname << "|" << endl;
+            cout << "| BACKEND_FILE = " << setw(26) << left << fname << "|" << endl;
         }
         if (s_chk(ct, n) == 0 && *n == 0)
         {
             color(12);
-            cout << "|> C_NUM_STATUS = " << setw(21) << left << *n << "|" << endl;
-            cout << "|> C_HRS_STATUS = " << setw(21) << left << s_chk(ct, n) << "|" << endl;
+            cout << "| C_NUM_STATUS = " << setw(26) << left << *n << "|" << endl;
+            cout << "| C_HRS_STATUS = " << setw(26) << left << s_chk(ct, n) << "|" << endl;
         }
         else
         {
             color(10);
-            cout << "|> C_NUM_STATUS = " << setw(21) << left << *n << "|" << endl;
-            cout << "|> C_HRS_STATUS = " << setw(21) << left << s_chk(ct, n) << "|" << endl;
+            cout << "| C_NUM_STATUS = " << setw(26) << left << *n << "|" << endl;
+            cout << "| C_HRS_STATUS = " << setw(26) << left << s_chk(ct, n) << "|" << endl;
         }
     }
     color(15);
 
-    line(39);
+    line(43);
     if (opt == -1 && flip == 0)
     {
         opt = selection(ct, n);
@@ -571,40 +571,40 @@ int selection(Data *ct, short *n)
 
     unsigned int pos = 0, y = 0;
     int opt = -1;
-    g_xy(4, 1);
-    color(12);
+    g_xy(36, 1);
 
     while (true)
     {
+        color(12);
         system("pause>nul");
 
         if (GetAsyncKeyState(VK_DOWN) && y <= 10)
         {
-            g_xy(2, y);
+            g_xy(36, y);
             if (y == 0)
             {
                 color(15);
-                cout << "===";
+                cout << "====";
                 color(12);
             }
             else
             {
-                cout << "   ";
+                cout << "    ";
             }
             y++;
-            g_xy(2, y);
-            cout << "==>";
+            g_xy(36, y);
+            cout << "<===";
             pos++;
             continue;
         }
         if (GetAsyncKeyState(VK_UP) && y > 1)
         {
 
-            g_xy(2, y);
-            cout << "   ";
+            g_xy(36, y);
+            cout << "    ";
             y--;
-            g_xy(2, y);
-            cout << "==>";
+            g_xy(36, y);
+            cout << "<===";
             pos--;
             continue;
         }
