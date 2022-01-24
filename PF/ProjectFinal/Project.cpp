@@ -5,7 +5,7 @@ int main()
     int opt;
     char yn;
     
-    Table tt[5][6];
+    
     do
     {
 

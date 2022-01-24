@@ -17,27 +17,29 @@ struct Table
 
 short n;
 Data *ct = new Data[n];
+Table tt[5][7];
 const string days[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+const string time_slot[] = {"9:00", "10:00", "11:00", "12:00", "1:00", "2:00", "3:00"};
 string fname = "Nil";
+HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+ifstream fin;
+ofstream fout;
 
 //ProtoTyping so its possible to use every function in every other function
 void i_data(Data **ct, short *n);
 void o_data(Data *ct, short *n);
 void o_file(Data *ct, short *n);
 void i_file(Data **ct, short *n);
-void gen_Table(Data *ct, Table tt[5][6], short *n);
-void o_table(Table tt[5][6]);
-void randomize_table(Table tt[5][6]);
+void gen_Table(Data *ct, Table tt[5][7], short *n);
+void o_table(Table tt[5][7]);
+void randomize_table(Table tt[5][7]);
 void line(int num);
 bool d_chk(Data *ct, short *n);
 void wipe(Data *ct, short *n);
 int mod_menu(Data *ct, short *n);
 int s_chk(Data *ct, short *n);
 void siz(short *n);
-int selection(Data *ct, short *n);
-HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-ifstream fin;
-ofstream fout;
+int selection();
 
 //Using WinApi and STD_Handle for colors
 void color(int n)
@@ -60,6 +62,9 @@ void i_data(Data **ct, short *n)
     cout << "Input ::" << endl;
     cout << "Enter Number of Courses :: ";
     cin >> inp;
+    if (inp == 0){
+        return;
+    }
     *n = inp;
     fname = "Nil";
     Data *t = new Data[inp];
@@ -159,7 +164,7 @@ void i_file(Data **ct, short *n)
 }
 
 //Generate Table
-void gen_Table(Data *ct, Table tt[5][6], short *n)
+void gen_Table(Data *ct, Table tt[5][7], short *n)
 {
     int c = 0;
     int cnt = 0;
@@ -171,7 +176,7 @@ void gen_Table(Data *ct, Table tt[5][6], short *n)
         {
             break;
         }
-        for (int j = 0; j < 6; j++)
+        for (int j = 0; j < 7; j++)
         {
             if (cnt < ct[c].cr_h)
             {
@@ -191,7 +196,7 @@ void gen_Table(Data *ct, Table tt[5][6], short *n)
     }
     for (int i = 0; i < 5; i++)
     {
-        for (int j = 0; j < 6; j++)
+        for (int j = 0; j < 7; j++)
         {
             if (tt[i][j].block == "")
             {
@@ -203,12 +208,19 @@ void gen_Table(Data *ct, Table tt[5][6], short *n)
 }
 
 //Output Table
-void o_table(Table tt[5][6])
+void o_table(Table tt[5][7])
 {
+    cout << setw(18) << "";
+    for (int i = 0; i < 7; i++)
+    {
+        cout << setw(17) << left << time_slot[i];
+    }
+    cout << endl;
+    cout << endl;
     for (int i = 0; i < 5; i++)
     {
-        cout << setw(10) << days[i] << setw(5) << "|";
-        for (int j = 0; j < 6; j++)
+        cout << setw(10) << days[i] << setw(6) << "|";
+        for (int j = 0; j < 7; j++)
         {
             cout << setw(17) << left << tt[i][j].block;
         }
@@ -219,11 +231,11 @@ void o_table(Table tt[5][6])
 }
 
 //Randomized Time Table
-void randomize_table(Table tt[5][6])
+void randomize_table(Table tt[5][7])
 {
     int rn;
     string temp;
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 7; i++)
     {
         for (int j = 0; j < 5; j++)
         {
@@ -269,12 +281,12 @@ bool d_chk(Data *ct, short *n)
 }
 
 //Outputing the Generated timetable to file
-void t_o_file(Table tt[5][6])
+void t_o_file(Table tt[5][7])
 {
     string tabname, temp_fname;
     temp_fname = fname;
     temp_fname.erase(temp_fname.find(".txt"), 4);
-    cin.ignore();
+
     tabname += "TimeTable-" + temp_fname + ".csv";
     fout.open(tabname);
     if (fout.is_open())
@@ -284,10 +296,16 @@ void t_o_file(Table tt[5][6])
         cout << tabname << " access granted!" << endl;
         cout << endl;
         color(15);
+        fout << ",";
+        for (int i = 0; i < 7; i++)
+        {
+            fout << time_slot[i] << ",";
+        }
+        fout << endl;
         for (int i = 0; i < 5; i++)
         {
             fout << days[i] << ",";
-            for (int j = 0; j < 6; j++)
+            for (int j = 0; j < 7; j++)
             {
                 fout << tt[i][j].block << ",";
             }
@@ -305,36 +323,26 @@ void t_o_file(Table tt[5][6])
         color(15);
     }
     fout.close();
+    cin.ignore();
 }
 
 //Wiping the data stored in database i.e struct
 void wipe(Data *ct, short *n)
 {
-    if (!ct[0].c_name.empty() && !ct[0].t_name.empty() && ct[0].cr_h != 0)
+
+    for (int i = 0; i < *n; i++)
     {
-        for (int i = 0; i < *n; i++)
-        {
-            ct[i].c_name = "";
-            ct[i].t_name = "";
-            ct[i].cr_h = 0;
-        }
-        color(10);
-        cout << "DataBase Wiped Successfully!" << endl;
-        cout << endl;
-        color(15);
+        ct[i].c_name = "";
+        ct[i].t_name = "";
+        ct[i].cr_h = 0;
     }
-    else
-    {
-        color(12);
-        cout << "DataBase Already Empty!" << endl;
-        cout << endl;
-        color(15);
-    }
+    color(10);
+    cout << "DataBase Wiped Successfully!" << endl;
+    cout << endl;
+    color(15);
     fname = "Nil";
     *n = 0;
 }
-
-//modded menu using simple if-else and goto and flagging(for concepts)
 
 int s_chk(Data *ct, short *n)
 {
@@ -364,6 +372,7 @@ void siz(short *n)
     *n = chk / 3;
 }
 
+//modded menu using simple if-else and goto and flagging(for concepts)
 int mod_menu(Data *ct, short *n)
 {
 
@@ -459,7 +468,7 @@ label1:
     if (opt == 7)
     {
         color(10);
-        cout << setw(43) << left << "> utPut TimeTable"
+        cout << setw(43) << left << "> OutPut TimeTable"
              << "<" << endl;
         color(15);
     }
@@ -504,74 +513,53 @@ label1:
         color(10);
         cout << setw(43) << left << "| DATABASE_STATUS = FULL "
              << "|" << endl;
-        if (fname == "Nil")
-        {
-            color(12);
-            cout << "| BACKEND_FILE = " << setw(26) << left << fname << "|" << endl;
-        }
-        else
-        {
-            color(10);
-            cout << "| BACKEND_FILE = " << setw(26) << left << fname << "|" << endl;
-        }
-        if (s_chk(ct, n) == 0 && *n == 0)
-        {
-            color(12);
-            cout << "| C_NUM_STATUS = " << setw(26) << left << *n << "|" << endl;
-            cout << "| C_HRS_STATUS = " << setw(26) << left << s_chk(ct, n) << "|" << endl;
-        }
-        else
-        {
-            color(10);
-            cout << "| C_NUM_STATUS = " << setw(26) << left << *n << "|" << endl;
-            cout << "| C_HRS_STATUS = " << setw(26) << left << s_chk(ct, n) << "|" << endl;
-        }
     }
     else
     {
         color(12);
         cout << setw(43) << left << "| DATABASE_STATUS = EMPTY"
              << "|" << endl;
-        if (fname == "Nil")
-        {
-            color(12);
-            cout << "| BACKEND_FILE = " << setw(26) << left << fname << "|" << endl;
-        }
-        else
-        {
-            color(10);
-            cout << "| BACKEND_FILE = " << setw(26) << left << fname << "|" << endl;
-        }
-        if (s_chk(ct, n) == 0 && *n == 0)
-        {
-            color(12);
-            cout << "| C_NUM_STATUS = " << setw(26) << left << *n << "|" << endl;
-            cout << "| C_HRS_STATUS = " << setw(26) << left << s_chk(ct, n) << "|" << endl;
-        }
-        else
-        {
-            color(10);
-            cout << "| C_NUM_STATUS = " << setw(26) << left << *n << "|" << endl;
-            cout << "| C_HRS_STATUS = " << setw(26) << left << s_chk(ct, n) << "|" << endl;
-        }
+    }
+
+    if (fname == "Nil")
+    {
+        color(12);
+        cout << "| BACKEND_FILE = " << setw(26) << left << fname << "|" << endl;
+    }
+    else
+    {
+        color(10);
+        cout << "| BACKEND_FILE = " << setw(26) << left << fname << "|" << endl;
+    }
+    if (s_chk(ct, n) == 0 && *n == 0)
+    {
+        color(12);
+        cout << "| C_NUM_STATUS = " << setw(26) << left << *n << "|" << endl;
+        cout << "| C_HRS_STATUS = " << setw(26) << left << s_chk(ct, n) << "|" << endl;
+    }
+    else
+    {
+        color(10);
+        cout << "| C_NUM_STATUS = " << setw(26) << left << *n << "|" << endl;
+        cout << "| C_HRS_STATUS = " << setw(26) << left << s_chk(ct, n) << "|" << endl;
     }
     color(15);
 
     line(43);
     if (opt == -1 && flip == 0)
     {
-        opt = selection(ct, n);
+        opt = selection();
         goto label1;
     }
     return opt;
 }
 
-int selection(Data *ct, short *n)
+int selection()
 {
 
     unsigned int pos = 0, y = 0;
     int opt = -1;
-    g_xy(36, 1);
+    g_xy(36, 0);
 
     while (true)
     {
