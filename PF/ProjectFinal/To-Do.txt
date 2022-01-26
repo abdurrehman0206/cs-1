@@ -1,4 +1,0 @@
-1-Get Days , Teachers , Courses , Av_Hours;
-2-Depending on Input Design A table fitting the input design;
-3-Fitting in Tutorials;
-4-Avoid Clashes;
