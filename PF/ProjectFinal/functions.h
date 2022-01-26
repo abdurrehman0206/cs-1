@@ -2,7 +2,9 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <conio.h>
 #include <windows.h>
+#include <unistd.h>
 using namespace std;
 
 struct Data
@@ -62,7 +64,8 @@ void i_data(Data **ct, short *n)
     cout << "Input ::" << endl;
     cout << "Enter Number of Courses :: ";
     cin >> inp;
-    if (inp == 0){
+    if (inp == 0)
+    {
         return;
     }
     *n = inp;
@@ -560,11 +563,12 @@ int selection()
     unsigned int pos = 0, y = 0;
     int opt = -1;
     g_xy(36, 0);
-
+    char c;
     while (true)
     {
         color(12);
-        system("pause>nul");
+        //system("pause>nul");
+        sleep(1);
 
         if (GetAsyncKeyState(VK_DOWN) && y <= 10)
         {
