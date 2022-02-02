@@ -102,8 +102,6 @@ int main()
 
                 cout << "Multiplication is Possible!" << endl;
                 float res0[row[0]][col[1]];
-                cout << "Created a Result Matrix of size " << row[0] << "x" << col[1] << endl;
-                cout << "Nullifying the Result Matrix......" << endl;
                 for (int i = 0; i < row[0]; i++)
                 {
                     for (int j = 0; j < col[1]; j++)
@@ -111,9 +109,7 @@ int main()
                         res0[i][j] = 0;
                     }
                 }
-                cout << "Nullified Successfully....." << endl;
-                cout << endl;
-
+  
                 for (int i = 0; i < row[0]; i++)
                 {
                     for (int j = 0; j < col[1]; j++)
@@ -151,8 +147,6 @@ int main()
             {
                 cout << "Multiplication is Possible!" << endl;
                 float res1[row[1]][col[0]];
-                cout << "Created a Result Matrix of size " << row[1] << "x" << col[0] << endl;
-                cout << "Nullifying the Result Matrix......" << endl;
                 for (int i = 0; i < row[1]; i++)
                 {
                     for (int j = 0; j < col[0]; j++)
@@ -160,8 +154,6 @@ int main()
                         res1[i][j] = 0;
                     }
                 }
-                cout << "Nullified Successfully....." << endl;
-                cout << endl;
                 for (int i = 0; i < row[1]; i++)
                 {
                     for (int j = 0; j < col[0]; j++)

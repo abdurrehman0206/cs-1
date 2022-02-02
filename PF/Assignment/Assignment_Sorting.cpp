@@ -69,25 +69,25 @@ int main()
             break;
         case 3:
             cout << "Ascending Order : " << endl;
-            for (int comp_r = 0; comp_r < row; comp_r++)
+            for (int i = 0; i < row; i++)
             {
-                for (int comp_c = 0; comp_c < col; comp_c++)
+                for (int j = 0; j < col; j++)
                 {
-                    for (int inner_r = comp_r; inner_r < row; inner_r++)
+                    for (int k = i; k < row; k++)
                     {
-                        
-                        for (int inner_c = 0; inner_c < col; inner_c++)
+
+                        for (int l = 0; l < col; l++)
                         {
-                            if (inner_r == comp_r && inner_c < comp_c)
+                            if (k == i && l < j)
                             {
                                 continue;
                             }
 
-                            if (arr[comp_r][comp_c] > arr[inner_r][inner_c])
+                            if (arr[i][j] > arr[k][l])
                             {
-                                temp = arr[comp_r][comp_c];
-                                arr[comp_r][comp_c] = arr[inner_r][inner_c];
-                                arr[inner_r][inner_c] = temp;
+                                temp = arr[i][j];
+                                arr[i][j] = arr[k][l];
+                                arr[k][l] = temp;
                             }
                         }
                     }
@@ -97,26 +97,25 @@ int main()
             break;
         case 4:
             cout << "Descending Order : " << endl;
-            for (int comp_r = 0; comp_r < row; comp_r++)
+            for (int i = 0; i < row; i++)
             {
-                for (int comp_c = 0; comp_c < col; comp_c++)
+                for (int j = 0; j < col; j++)
                 {
-                    for (int inner_r = comp_r; inner_r < row; inner_r++)
+                    for (int k = i; k < row; k++)
                     {
-                        
-                        for (int inner_c = 0; inner_c < col; inner_c++)
+                        for (int l = 0; l < col; l++)
                         {
-                            
-                            if (inner_r == comp_r && inner_c < comp_c)
+
+                            if (k == i && l < j)
                             {
                                 continue;
                             }
 
-                            if (arr[comp_r][comp_c] < arr[inner_r][inner_c])
+                            if (arr[i][j] < arr[k][l])
                             {
-                                temp = arr[comp_r][comp_c];
-                                arr[comp_r][comp_c] = arr[inner_r][inner_c];
-                                arr[inner_r][inner_c] = temp;
+                                temp = arr[i][j];
+                                arr[i][j] = arr[k][l];
+                                arr[k][l] = temp;
                             }
                         }
                     }
@@ -128,6 +127,7 @@ int main()
             exit(0);
             break;
         }
+
     } while (true);
 
     system("pause");

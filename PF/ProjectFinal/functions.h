@@ -567,8 +567,7 @@ int selection()
     while (true)
     {
         color(12);
-        //system("pause>nul");
-        sleep(1);
+        system("pause>nul");
 
         if (GetAsyncKeyState(VK_DOWN) && y <= 10)
         {

@@ -2,6 +2,10 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"name": "cs-1-open",
+			"path": "d:\\ProjectFinal\\cs-1-open"
 		}
 	],
 	"settings": {
@@ -47,7 +51,8 @@
 			"stdexcept": "cpp",
 			"streambuf": "cpp",
 			"typeinfo": "cpp",
-			"iomanip": "c"
+			"iomanip": "c",
+			"common.h": "c"
 		}
 	}
 }
