@@ -52,7 +52,9 @@
 			"streambuf": "cpp",
 			"typeinfo": "cpp",
 			"iomanip": "c",
-			"common.h": "c"
+			"common.h": "c",
+			"xstring": "cpp",
+			"ios": "cpp"
 		}
 	}
 }
