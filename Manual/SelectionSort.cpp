@@ -11,7 +11,7 @@ void display(int[]);
 
 int main()
 {
-    int arr[] = {1, 7, 2, 2, 89, 42, 147, 16, 37, 132, 124, 111};
+    int arr[] = {7, 2, 1, 2, 89, 4, 147, 16, 37, 132, 124, 111};
     cout << "Before Sorting :: " << endl;
     display(arr);
     select(arr);
@@ -23,17 +23,26 @@ int main()
 
 void select(int a[])
 {
-    int lowest = 0;
+    bool flag = false;
+    int index;
+    int lowest = a[0];
     for (int i = 0; i < 12; i++)
     {
+        flag = false;
+        lowest = a[i];
         for (int j = i + 1; j < 12; j++)
         {
             if (lowest > a[j])
             {
                 lowest = a[j];
+                flag = true;
+                index = j;
             }
         }
-        swap(lowest, a[i]);
+        if (flag == true)
+        {
+            swap(a[index], a[i]);
+        }
     }
 }
 
