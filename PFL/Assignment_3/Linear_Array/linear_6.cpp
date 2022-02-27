@@ -1,4 +1,3 @@
-/* Write C++ program to reverse the string */
 #include <iostream>
 
 using namespace std;
