@@ -10,21 +10,23 @@ void swap(int &a, int &b)
 
 int main()
 {
-    int arr[] = {1, 2, 3, 4, 5, 6, 7};
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8};
     int *first = arr;
-    int *last = &arr[6];
+    int *last = &arr[7];
     cout << "Before Reversing :: " << endl;
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 8; i++)
     {
         cout << arr[i] << "\t";
     }
     cout << endl;
-    for (int i = 0; !(*first == *last); i++)
+    for (int i = 0; i < 8 / 2; i++)
     {
         swap(*first++, *last--);
     }
+    first = arr;
+    last = &arr[7];
     cout << "After Reversing :: " << endl;
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 8; i++)
     {
         cout << arr[i] << "\t";
     }
