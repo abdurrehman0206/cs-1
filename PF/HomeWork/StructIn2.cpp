@@ -24,21 +24,21 @@ void swap(Student &, Student &);
 
 int main()
 {
-    Student s[3];
+    Student s[10];
 
     cout << "_Input[24H]_" << endl;
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 10; i++)
     {
         s[i].i_stud();
     }
     cout << "_Output_" << endl;
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 10; i++)
     {
         s[i].o_stud();
     }
     cout << "_Sorted_" << endl;
-    sort(s, 3);
-    for (int i = 0; i < 3; i++)
+    sort(s, 10);
+    for (int i = 0; i < 10; i++)
     {
         s[i].o_stud();
     }
