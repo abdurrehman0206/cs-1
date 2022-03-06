@@ -14,7 +14,7 @@ int *isOdd(int *p)
         }
         p++;
     }
-
+    p -= 21; // return pointer to first element
     return p;
 }
 
