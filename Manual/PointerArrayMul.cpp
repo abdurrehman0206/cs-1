@@ -4,9 +4,11 @@ using namespace std;
 
 int *mul(int *a)
 {
+    int *temp = a;
     for (int i = 0; i < 7; i++)
     {
-        *(a + i) *= 5;
+        *temp *= 5;
+        temp++;
     }
     return a;
 }
