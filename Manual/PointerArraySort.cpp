@@ -6,7 +6,8 @@ int main()
 {
     int arr[] = {5, 7, 4, 12, 78, 11, 0, 1, 9, 181, 171, 18};
     int *current = arr;
-    int *next = &arr[1];
+    int *next;
+    next = (current + 1);
     int temp;
 
     cout << "Before Sorting :: ";
@@ -15,9 +16,9 @@ int main()
         cout << arr[i] << " ";
     }
     cout << endl;
-    for (int i = 1; i < 12; i++)
+    for (int i = 0; i < 12; i++)
     {
-        for (int j = i - 1; j < 12; j++)
+        for (int j = i; j < 12; j++)
         {
             if (*current > *next)
             {
@@ -25,9 +26,9 @@ int main()
                 *current = *next;
                 *next = temp;
             }
-            *next++;
+            next++;
         }
-        *current++;
+        current++;
         next = current;
     }
 
