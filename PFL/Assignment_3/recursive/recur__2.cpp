@@ -21,6 +21,7 @@ int main()
     int re = 0;
     cout << "Enter a number :: ";
     cin >> num;
+    
 
     re = rev(num, 0);
     cout << "Number :: " << num << endl;
