@@ -1,9 +1,0 @@
---scratch work on project.cpp
---added function.h for better readability and control
---added struct for storage of Data Entity
---added functions for input and output of Data Entity
---added a simple menu
---testing the added stuff and debugging before switching to pointers
---added raw pointers for better control and memory usage
---created modded menu v1.0
---added colors

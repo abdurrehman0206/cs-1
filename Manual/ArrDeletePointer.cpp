@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int *del(int *p)
+int del(int *p)
 {
     int ind, temp;
     cout << "Enter Index to delete :: ";
@@ -10,8 +10,7 @@ int *del(int *p)
     int *current = p, *next = p;
     current += ind;
     *current = 0;
-    next += ind;
-    next++;
+    next = (current + 1);
     for (int i = ind; i < 20; i++)
     {
         temp = *current;
@@ -20,7 +19,6 @@ int *del(int *p)
         current++;
         next++;
     }
-    return p;
 }
 
 int main()
@@ -33,7 +31,7 @@ int main()
         cout << a[i] << " ";
     }
     cout << endl;
-    p = del(a);
+    del(a);
     cout << "After Delete :: " << endl;
     for (int i = 0; i < 21; i++)
     {

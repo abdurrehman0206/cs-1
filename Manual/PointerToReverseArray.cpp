@@ -1,11 +1,11 @@
 #include <iostream>
 
 using namespace std;
-void swap(int &a, int &b)
+void swap(int *a, int *b)
 {
-    int tmp = a;
-    a = b;
-    b = tmp;
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
 }
 
 int main()
@@ -21,7 +21,9 @@ int main()
     cout << endl;
     for (int i = 0; i < 8 / 2; i++)
     {
-        swap(*first++, *last--);
+        swap(first, last);
+        first++;
+        last--;
     }
     first = arr;
     last = &arr[7];

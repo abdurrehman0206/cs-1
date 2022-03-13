@@ -69,7 +69,6 @@ void Student::i_stud()
 }
 void Student::correct()
 {
-    int cor = 0;
     while (t.seconds >= 60)
     {
         t.seconds -= 60;
@@ -80,14 +79,9 @@ void Student::correct()
         t.minutes -= 60;
         t.hours += 1;
     }
-    if (t.hours >= 24)
+    while (t.hours >= 24)
     {
-        while (t.hours != 24)
-        {
-            t.hours--;
-            cor++;
-        }
-        t.hours = cor;
+        t.hours -= 24;
     }
 }
 

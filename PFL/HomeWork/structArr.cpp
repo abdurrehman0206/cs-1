@@ -13,6 +13,7 @@ void input(Student s[]);
 void output(Student s[]);
 void sortGPA(Student s[]);
 void sortFname(Student s[]);
+void sortSname(Student s[]);
 void swap(Student &a, Student &b);
 
 int main()
@@ -30,7 +31,7 @@ int main()
     sortFname(s);
     output(s);
     cout << "_Last Name Sorted Data_" << endl;
-    sortFname(s);
+    sortSname(s);
     output(s);
 
     system("pause");
