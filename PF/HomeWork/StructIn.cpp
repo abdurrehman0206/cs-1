@@ -65,7 +65,7 @@ void i_stud(Student s[])
 }
 void correct(Student &s)
 {
-    int cor = 0;
+
     while (s.t.seconds >= 60)
     {
         s.t.seconds -= 60;
@@ -76,14 +76,9 @@ void correct(Student &s)
         s.t.minutes -= 60;
         s.t.hours += 1;
     }
-    if (s.t.hours >= 24)
+    while (s.t.hours != 24)
     {
-        while (s.t.hours != 24)
-        {
-            s.t.hours--;
-            cor++;
-        }
-        s.t.hours = cor;
+        s.t.hours -= 24;
     }
 }
 
